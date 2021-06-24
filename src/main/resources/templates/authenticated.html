@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello Index Page!</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<h2>Authenticated</h2>
+
+<ul>
+    <li>
+        <a th:href="@{/}">Index</a>
+    </li>
+    <li>
+        <a th:href="@{/authenticated}">Authenticated</a>
+    </li>
+    <li>
+        <a sec:authorize="!isAuthenticated()" th:href="@{/login}">Login</a>
+        <a sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>
+    </li>
+</ul>
+</body>
+</html>
