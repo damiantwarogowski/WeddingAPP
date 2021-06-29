@@ -2,6 +2,7 @@ package com.sda.jz75_security_template.configuration;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configurers.userdetails.DaoAuthenticationConfigurer;
@@ -24,9 +25,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(
                         "/",
+                        "/register",        // get
                         "/webjars/**",
                         "/css/**",
                         "/js/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/register").permitAll() // pozwól wysłać zapytanie rejestracji
                 .anyRequest().authenticated()
                 .and()
                     .formLogin()

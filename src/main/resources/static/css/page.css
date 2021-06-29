@@ -95,3 +95,7 @@ body {
 .container{
     margin-top: 60px;
 }
+
+.register-link{
+    font-style: oblique;
+}
