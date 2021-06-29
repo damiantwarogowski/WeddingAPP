@@ -3,11 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Hello Index Page!</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <th:block th:replace="fragments :: link-styles" th:remove="tag"/>
 </head>
 <body>
-<h2>Authenticated</h2>
 <th:block th:replace="fragments :: navigator" th:remove="tag"/>
-
+<main>
+    <div class="container marketing">
+        <h2>Authenticated</h2>
+    </div>
+</main>
+<th:block th:replace="fragments :: scripts" th:remove="tag"/>
 </body>
 </html>

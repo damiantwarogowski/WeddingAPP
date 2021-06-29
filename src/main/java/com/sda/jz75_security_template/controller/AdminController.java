@@ -1,10 +1,12 @@
 package com.sda.jz75_security_template.controller;
 
+import com.sda.jz75_security_template.service.AccountService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -19,10 +21,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @RequiredArgsConstructor
 public class AdminController {
+    private final AccountService accountService;
 
     @GetMapping
     public String getIndex(){
         return "admin-index";
+    }
+
+    @GetMapping("/accounts")
+    public String getAccounts(Model model){
+        model.addAttribute("accounts", accountService.getAccountList());
+        return "admin-account-list";
     }
 
 }
