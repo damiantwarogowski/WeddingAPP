@@ -26,7 +26,6 @@ public class Index {
     // - UZYTKOWNICY REJESTRUJA SIE SAMI -
 
     // Plan:
-    // - role uzytkownikow/prawa
     // - rejestracja uzytkownika
     // - listowanie uzytkonikow
     // - UI/użycie material/bootstrap

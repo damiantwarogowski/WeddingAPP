@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+
+<th:block th:fragment="navigator">
+    <ul>
+        <li>
+            <a th:href="@{/}">Index</a>
+        </li>
+        <li sec:authorize="isAuthenticated()">
+            <a th:href="@{/authenticated}">Authenticated</a>
+        </li>
+        <li sec:authorize="hasRole('ADMIN')">
+            <a th:href="@{/admin}">Admin Panel</a>
+        </li>
+        <li>
+            <a sec:authorize="!isAuthenticated()" th:href="@{/login}">Login</a>
+            <a sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>
+        </li>
+    </ul>
+</th:block>
+</body>
+</html>

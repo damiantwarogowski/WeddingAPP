@@ -23,9 +23,9 @@ public class DataInitializer implements ApplicationListener<ContextRefreshedEven
     private final static String ADMIN_USERNAME = "admin";
     private final static String ADMIN_PASSWORD = "nimda";
 
-    private final static String ROLE_ADMIN = "ADMIN";
-    private final static String ROLE_USER = "USER";
-    private final static String ROLE_SUPERVISOR = "SUPERVISOR";
+    private final static String ROLE_ADMIN = "ROLE_ADMIN";
+    private final static String ROLE_USER = "ROLE_USER";
+    private final static String ROLE_SUPERVISOR = "ROLE_SUPERVISOR";
 
     private final static String[] AVAILABLE_ROLES = {ROLE_ADMIN, ROLE_USER, ROLE_SUPERVISOR};
 
@@ -40,6 +40,7 @@ public class DataInitializer implements ApplicationListener<ContextRefreshedEven
         }
 
         addUser(ADMIN_USERNAME, ADMIN_PASSWORD, AVAILABLE_ROLES);
+        addUser("user", "resu", new String[] {ROLE_USER});
     }
 
     private void addUser(String username, String password, String[] roles) {
