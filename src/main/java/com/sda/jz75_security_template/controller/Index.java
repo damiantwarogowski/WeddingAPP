@@ -1,10 +1,13 @@
 package com.sda.jz75_security_template.controller;
 
 import com.sda.jz75_security_template.exception.InvalidRegisterData;
+import com.sda.jz75_security_template.model.Account;
 import com.sda.jz75_security_template.model.CreateAccountRequest;
 import com.sda.jz75_security_template.service.AccountService;
+import com.sda.jz75_security_template.service.FavouriteDogNameService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,16 +21,9 @@ import java.security.Principal;
 @RequestMapping("/")
 @RequiredArgsConstructor
 public class Index {
-//    Plan zajęć:
-//  - dokończenie zarządzania użytkownikami
-//  - stworzenie panelu "mój profil" - wyświelenie informacji o principal
-//  - encje powiązane z użytkownikiem (Principal)
-
-//    Do wyboru
-//  - mailowanie
-//  - jwt
-//  - feature na życzenie
     private final AccountService accountService;
+    private final FavouriteDogNameService favouriteDogNameService;
+
     @GetMapping
     public String getIndex(){
         return "index";
@@ -67,7 +63,14 @@ public class Index {
 
     @GetMapping("/authenticated")
     public String getAuthenticated(Model model, Principal principal){
-        model.addAttribute("uzytkownik", principal);
+        if(principal instanceof UsernamePasswordAuthenticationToken){
+            UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = (UsernamePasswordAuthenticationToken) principal;
+            if(usernamePasswordAuthenticationToken.getPrincipal() instanceof Account) {
+                Account account = (Account) usernamePasswordAuthenticationToken.getPrincipal();
+                model.addAttribute("uzytkownik", account);
+                model.addAttribute("favouriteDogNamesList", favouriteDogNameService.favouriteDogNameList(account));
+            }
+        }
         return "authenticated";
     }
 }

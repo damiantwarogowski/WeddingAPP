@@ -7,11 +7,13 @@ import com.sda.jz75_security_template.service.AccountService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
 import java.util.Optional;
 
 import static com.sda.jz75_security_template.configuration.DataInitializer.*;
@@ -33,16 +35,21 @@ public class AdminController {
         return "admin-index";
     }
 
+    @ModelAttribute
+    public void addAttributes(Model model, Principal principal) {
+        if(principal instanceof UsernamePasswordAuthenticationToken){
+            UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = (UsernamePasswordAuthenticationToken) principal;
+            if(usernamePasswordAuthenticationToken.getPrincipal() instanceof Account) {
+                Account account = (Account) usernamePasswordAuthenticationToken.getPrincipal();
+                model.addAttribute("username", account.getUsername());
+            }
+        }
+    }
+
     @GetMapping("/accounts")
     public String getAccounts(Model model, @RequestParam(required = false) String error) {
         model.addAttribute("accounts", accountService.getAccountList());
         model.addAttribute("error_msg", error);
-        return "admin-account-list";
-    }
-
-    @GetMapping("/account/{accountId}")
-    public String getAccount(Model model, @PathVariable Long accountId) {
-//        TODO:
         return "admin-account-list";
     }
 

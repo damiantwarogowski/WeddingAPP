@@ -30,3 +30,8 @@ html {
 .list-data-row:nth-child(even){
     background-color: #e0e0e0;
 }
+
+.user-identity{
+    font-style: normal;
+    color: white;
+}
