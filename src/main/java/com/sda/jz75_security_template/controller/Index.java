@@ -11,11 +11,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.security.Principal;
+
 @Slf4j
 @Controller
 @RequestMapping("/")
 @RequiredArgsConstructor
 public class Index {
+//    Plan zajęć:
+//  - dokończenie zarządzania użytkownikami
+//  - stworzenie panelu "mój profil" - wyświelenie informacji o principal
+//  - encje powiązane z użytkownikiem (Principal)
+
+//    Do wyboru
+//  - mailowanie
+//  - jwt
+//  - feature na życzenie
     private final AccountService accountService;
     @GetMapping
     public String getIndex(){
@@ -55,7 +66,8 @@ public class Index {
 
 
     @GetMapping("/authenticated")
-    public String getAuthenticated(){
+    public String getAuthenticated(Model model, Principal principal){
+        model.addAttribute("uzytkownik", principal);
         return "authenticated";
     }
 }

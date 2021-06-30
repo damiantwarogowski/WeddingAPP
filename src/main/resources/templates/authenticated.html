@@ -10,6 +10,7 @@
 <main>
     <div class="container marketing">
         <h2>Authenticated</h2>
+        <div th:text="${uzytkownik}"></div>
     </div>
 </main>
 <th:block th:replace="fragments :: scripts" th:remove="tag"/>
