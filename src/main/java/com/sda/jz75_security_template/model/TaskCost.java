@@ -7,14 +7,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDate;
 
-public class Payment {
+public class TaskCost {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private double paymentAmount;
+    private double totalCost;
+
+    private double bailCost;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate datePaymentAmount;
+    private LocalDate totalCostDeadline;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate bailCostDeadline;
 }
