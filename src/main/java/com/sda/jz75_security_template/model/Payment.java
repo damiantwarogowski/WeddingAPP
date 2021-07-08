@@ -1,12 +1,19 @@
 package com.sda.jz75_security_template.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
+@Data
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Payment {
 
     @Id
@@ -17,4 +24,9 @@ public class Payment {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate datePaymentAmount;
+
+    @ManyToOne()
+    @ToString.Exclude
+    @JsonBackReference
+    private TaskCost poleTaskCost;
 }

@@ -36,10 +36,8 @@ public class Account implements UserDetails {
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<AccountRole> roles;
 
-    @ToString.Exclude
-    @JsonBackReference
-    @OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
-    private Set<FavouriteDogName> favouriteDogNames;
+    @OneToOne
+    private Person person;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

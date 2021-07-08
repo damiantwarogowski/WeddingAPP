@@ -1,32 +1,21 @@
 package com.sda.jz75_security_template.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Person {
-
+public class TypeOfTask {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String firstName;
-    private String lastName;
-
-    private String email;
-
-    @ManyToOne()
-    @ToString.Exclude
-    @JsonBackReference
-    private Couple poleCoupe;
-
+    @OneToMany(mappedBy = "poleTypeOfTask", fetch = FetchType.EAGER)
+    private List<TypeOfTask> tasksToDoList;
 }

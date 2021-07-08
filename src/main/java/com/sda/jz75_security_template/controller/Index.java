@@ -4,7 +4,6 @@ import com.sda.jz75_security_template.exception.InvalidRegisterData;
 import com.sda.jz75_security_template.model.Account;
 import com.sda.jz75_security_template.model.CreateAccountRequest;
 import com.sda.jz75_security_template.service.AccountService;
-import com.sda.jz75_security_template.service.FavouriteDogNameService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
