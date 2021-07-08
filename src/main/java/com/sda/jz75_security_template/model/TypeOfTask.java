@@ -1,11 +1,11 @@
 package com.sda.jz75_security_template.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -15,7 +15,11 @@ public class TypeOfTask {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String name;
 
-    @OneToMany(mappedBy = "poleTypeOfTask", fetch = FetchType.EAGER)
-    private List<TypeOfTask> tasksToDoList;
+    @OneToMany(mappedBy = "typeOfTask", fetch = FetchType.LAZY)
+    @ToString.Exclude
+    @JsonBackReference
+    @EqualsAndHashCode.Exclude
+    private Set<TaskToDo> tasks;
 }

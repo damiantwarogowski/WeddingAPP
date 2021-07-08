@@ -19,19 +19,13 @@ public class Couple {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    //    1dowielu
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Person groom;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Person bride;
 
-
-    @OneToMany(mappedBy = "poleCouple", fetch = FetchType.EAGER)
-//    private List<Account> AccountList;
-    private List<Person> PersonList; // Wydaje nam się, że person, to już stworzony account
-
-    @OneToOne()
-    @ToString.Exclude
-    @JsonBackReference
+    @OneToOne(mappedBy = "couple")
     private Wedding wedding;
-
-//    1dowielu
-@OneToMany(mappedBy = "poleCouple", fetch = FetchType.EAGER)
-private List<Person> personList;
 }

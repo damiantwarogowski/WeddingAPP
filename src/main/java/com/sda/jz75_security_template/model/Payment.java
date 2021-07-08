@@ -28,5 +28,5 @@ public class Payment {
     @ManyToOne()
     @ToString.Exclude
     @JsonBackReference
-    private TaskCost poleTaskCost;
+    private TaskCost taskCost;
 }

@@ -1,10 +1,7 @@
 package com.sda.jz75_security_template.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -13,6 +10,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -37,6 +35,12 @@ public class Wedding {
     @JsonBackReference
     private Couple couple;
 
-    @OneToMany(mappedBy = "poleWedding", fetch = FetchType.EAGER)
-    private List<TasksToDo> tasksToDoList;
+    @ManyToOne
+    private Account owner;
+
+    @OneToMany(mappedBy = "wedding", fetch = FetchType.LAZY)
+    @ToString.Exclude
+    @JsonBackReference
+    @EqualsAndHashCode.Exclude
+    private Set<TaskToDo> tasks;
 }

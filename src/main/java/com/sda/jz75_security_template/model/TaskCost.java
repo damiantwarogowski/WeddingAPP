@@ -1,13 +1,13 @@
 package com.sda.jz75_security_template.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -29,8 +29,12 @@ public class TaskCost {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate bailCostDeadline;
 
-    @OneToMany(mappedBy = "poleTaskCost", fetch = FetchType.EAGER)
-    private List<Payment> paymentList;
+    @OneToMany(mappedBy = "taskCost", fetch = FetchType.EAGER)
+    @ToString.Exclude
+    @JsonBackReference
+    @EqualsAndHashCode.Exclude
+    private Set<Payment> payments;
 
-
+    @ManyToOne()
+    private TaskToDo task;
 }
