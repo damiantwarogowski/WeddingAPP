@@ -37,6 +37,13 @@ public class AccountService {
             throw new InvalidRegisterData("Account with given username already exists!");
         }
 
+//        Person person = Person.builder()
+//                .firstName()
+//                .lastName()
+//                .email()
+//                .build();
+//        personRepository.save(person);
+
         Account account = Account.builder()
                 .username(request.getUsername())
                 .password(passwordEncoder.encode(request.getPassword()))
@@ -44,6 +51,7 @@ public class AccountService {
                 .accountNonLocked(true)
                 .credentialsNonExpired(true)
                 .enabled(true)
+//                .person(person)
                 .build();
         accountRepository.save(account);
         return true;
