@@ -1,12 +1,10 @@
 package com.sda.jz75_security_template.service;
 
 import com.sda.jz75_security_template.exception.InvalidRegisterData;
-import com.sda.jz75_security_template.model.Account;
-import com.sda.jz75_security_template.model.AccountRole;
-import com.sda.jz75_security_template.model.CreateAccountRequest;
-import com.sda.jz75_security_template.model.RolesDto;
+import com.sda.jz75_security_template.model.*;
 import com.sda.jz75_security_template.repository.AccountRepository;
 import com.sda.jz75_security_template.repository.AccountRoleRepository;
+import com.sda.jz75_security_template.repository.PersonRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -22,27 +20,33 @@ public class AccountService {
     private final AccountRepository accountRepository;
     private final AccountRoleRepository accountRoleRepository;
     private final PasswordEncoder passwordEncoder;
+    private final PersonRepository personRepository;
 
     public List<Account> getAccountList() {
         return accountRepository.findAll();
     }
 
     public boolean register(CreateAccountRequest request) {
-        if(!request.getPassword().equals(request.getConfirmPassword())){
+        if (!request.getPassword().equals(request.getConfirmPassword())) {
             throw new InvalidRegisterData("Passwords do not match!");
         }
 
         Optional<Account> accountOptional = accountRepository.findByUsername(request.getUsername());
-        if(accountOptional.isPresent()){
+        if (accountOptional.isPresent()) {
             throw new InvalidRegisterData("Account with given username already exists!");
         }
 
-//        Person person = Person.builder()
-//                .firstName()
-//                .lastName()
-//                .email()
-//                .build();
-//        personRepository.save(person);
+        Optional<Person> personOptional = personRepository.findByEmail(request.getEmail());
+        if (personOptional.isPresent()) {
+            throw new InvalidRegisterData("Email with given email already exists!");
+        }
+            Person person = Person.builder()
+                    .firstName(request.getFirstName())
+                    .lastName(request.getLastName())
+                    .email(request.getEmail())
+                    .build();
+            personRepository.save(person);
+
 
         Account account = Account.builder()
                 .username(request.getUsername())
@@ -51,14 +55,14 @@ public class AccountService {
                 .accountNonLocked(true)
                 .credentialsNonExpired(true)
                 .enabled(true)
-//                .person(person)
+                .person(person)
                 .build();
         accountRepository.save(account);
         return true;
     }
 
     public boolean deleteAccount(Long accountId) {
-        if(accountRepository.existsById(accountId)){
+        if (accountRepository.existsById(accountId)) {
             accountRepository.deleteById(accountId);
             return true;
         }
@@ -71,12 +75,12 @@ public class AccountService {
 
     public void updateAccount(Account account, RolesDto roles) {
         Optional<Account> accountOptional = accountRepository.findById(account.getId());
-        if(accountOptional.isPresent()){
+        if (accountOptional.isPresent()) {
             Account editedAccount = accountOptional.get();
 
             editedAccount.setEnabled(account.isEnabled());
             editedAccount.setAccountNonLocked(account.isAccountNonLocked());
-            if(account.getPassword() != null && !account.getPassword().isEmpty()){
+            if (account.getPassword() != null && !account.getPassword().isEmpty()) {
                 editedAccount.setPassword(passwordEncoder.encode(account.getPassword()));
             }
 
@@ -89,20 +93,20 @@ public class AccountService {
     }
 
     private void checkAndUpdateRole(Account editedAccount, String roleName, boolean shouldHaveAuthority) {
-        if(editedAccount.getRoles().stream()
-                .anyMatch(grantedAuthority -> grantedAuthority.getName().equals(roleName))){
-            if(!shouldHaveAuthority){
+        if (editedAccount.getRoles().stream()
+                .anyMatch(grantedAuthority -> grantedAuthority.getName().equals(roleName))) {
+            if (!shouldHaveAuthority) {
                 Optional<AccountRole> optionalAccountRole = accountRoleRepository.findByName(roleName);
-                if(optionalAccountRole.isPresent()){
+                if (optionalAccountRole.isPresent()) {
                     AccountRole accountRole = optionalAccountRole.get();
                     editedAccount.getRoles().remove(accountRole);
                 }
             }
             return;
         }
-        if(shouldHaveAuthority){
+        if (shouldHaveAuthority) {
             Optional<AccountRole> optionalAccountRole = accountRoleRepository.findByName(roleName);
-            if(optionalAccountRole.isPresent()){
+            if (optionalAccountRole.isPresent()) {
                 AccountRole accountRole = optionalAccountRole.get();
                 editedAccount.getRoles().add(accountRole);
             }
