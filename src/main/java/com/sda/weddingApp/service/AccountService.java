@@ -40,7 +40,7 @@ public class AccountService {
         if (personOptional.isPresent()) {
             throw new InvalidRegisterData("Email with given email already exists!");
         }
-        Optional<Person> personOptional = personRepository.findByEmail(request.getEmail());
+
             Person person = Person.builder()
                     .firstName(request.getFirstName())
                     .lastName(request.getLastName())
@@ -56,7 +56,7 @@ public class AccountService {
                 .accountNonLocked(true)
                 .credentialsNonExpired(true)
                 .enabled(true)
-//                .person(person)
+                .person(person)
                 .build();
         accountRepository.save(account);
         return true;
