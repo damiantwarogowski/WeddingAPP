@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Slf4j
 @Controller
@@ -75,6 +77,7 @@ public class Index {
             if(usernamePasswordAuthenticationToken.getPrincipal() instanceof Account) {
                 Account account = (Account) usernamePasswordAuthenticationToken.getPrincipal();
                 model.addAttribute("uzytkownik", account);
+
                 model.addAttribute("personList", personService.personList(account));
             }
         }
