@@ -5,6 +5,7 @@ import com.sda.weddingApp.model.Account;
 import com.sda.weddingApp.model.CreateAccountRequest;
 import com.sda.weddingApp.model.Person;
 import com.sda.weddingApp.service.AccountService;
+import com.sda.weddingApp.service.PersonService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -22,7 +23,7 @@ import java.security.Principal;
 @RequiredArgsConstructor
 public class Index {
     private final AccountService accountService;
-    private final Person person;
+    private final PersonService personService;
 
     @GetMapping
     public String getIndex(){
@@ -68,7 +69,7 @@ public class Index {
             if(usernamePasswordAuthenticationToken.getPrincipal() instanceof Account) {
                 Account account = (Account) usernamePasswordAuthenticationToken.getPrincipal();
                 model.addAttribute("uzytkownik", account);
-                model.addAttribute("osoba", person.person(account);
+                model.addAttribute("personList", personService.personList(account));
             }
         }
         return "authenticated";
