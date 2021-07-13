@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.HashSet;
 import java.util.Set;
 
-class Jz75SecurityTemplateApplicationTests {
+class WeddingAPPTests {
 
     @Test
     void contextLoads() {
