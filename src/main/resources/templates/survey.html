@@ -12,38 +12,40 @@
 <div class="panel-body">
     <h2>Questions about the wedding</h2>
 
-        <div class="row col-md-12 form-input-row">
-            <ul><li>
-            <p><b>1: When are you planning to get married ?</b></p>
+    <div class="row col-md-12 form-input-row">
+        <ul>
+            <li>
+                <p><b>1: When are you planning to get married ?</b></p>
 
-            <input type="date" th:min="${today}" th:value="${today}"/>
-            <br/>
+                <input type="date" th:min="${today}" th:value="${today}"/>
+                <br/><br/>
 
 
-            <p><b>2: Are you getting married in a church?</b></p>
+                <p><b>2: Are you getting married in a church ?</b></p>
 
-            <input type="radio" name="InChurch" value=" yes">Yes<br>
-            <input type="radio" name="InChurch" value=" no">No<br>
-            <br/>
+                <input type="radio" name="InChurch" value=" yes">Yes<br>
+                <input type="radio" name="InChurch" value=" no">No<br>
+                <br/>
 
-            <p><b>3: Are you getting a civil marriage?</b></p>
-            <input type="radio" name="IsCivil" value=" yes">Yes<br>
-            <input type="radio" name="IsCivil" value=" no">No<br>
-            <br/>
+                <p><b>3: Are you getting a civil marriage ?</b></p>
+                <input type="radio" name="IsCivil" value=" yes">Yes<br>
+                <input type="radio" name="IsCivil" value=" no">No<br>
+                <br/>
 
-            <p><b>4: Who in your relationship is mostly right?</b></p>
-            <input type="radio" name="IsCivil" value="yes">She...(Currently this question should be asked after the word
-            "YES".)<br>
+                <p><b>4: Who in your relationship is mostly right ?</b></p>
+                <input type="radio" name="IsCivil" value=" yes">She...(Currently this question should be asked after
+                words "I do".)<br>
 
-            <br/>
+                <br/>
 
-            <p><b>5: When are you planning to get divorce ?</b></p>
+                <p><b>5: When are you planning to get divorce ?</b></p>
 
-            <input type="date" th:min="${today}" th:value="${today}"/>
-            <br/>
-            </li></ul>
-        </div>
+                <input type="date" th:min="${today}" th:value="${today}"/>
+                <br/><br/>
+            </li>
+        </ul>
     </div>
+</div>
 <th:block th:replace="fragments :: scripts" th:remove="tag"/>
 </body>
 </html>
