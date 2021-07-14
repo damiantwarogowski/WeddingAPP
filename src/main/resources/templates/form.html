@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Page</title>
+</head>
+<body>
+<th:block th:replace="fragments :: navigator" th:remove="tag"/>
+
+<div class="panel-heading"><strong>Questions about the wedding</strong></div>
+<div class="panel-body">
+    <p>When are you planning to get married ?</p>
+
+    <input type="date" min="today" value="yyyy-mm-dd">
+    <br/>
+    <p>Are you getting married in a church?</p>
+
+    <input type="radio" name="InChurch" value="yes">Yes<br>
+    <input type="radio" name="InChurch" value="no">No<br>
+    <br/>
+
+    <p>Are you getting a civil marriage?</p>
+    <input type="radio" name="IsCivil" value="yes">Yes<br>
+    <input type="radio" name="IsCivil" value="no">No<br>
+    <br/>
+
+</div>
+</div>
+<th:block th:replace="fragments :: scripts" th:remove="tag"/>
+
+<form th:action="@{/wedding/form/add}" method="post" th:object="${new_wedding}">
+    <input type="number" hidden th:field="*{id}">
+    <input type="text" th:field="*{firstName}">
+    <input type="text" th:field="*{lastName}">
+    <input type="date" th:field="*{dateOfWedding}">
+    <input type="submit">
+</form>
+
+</body>
+</html>

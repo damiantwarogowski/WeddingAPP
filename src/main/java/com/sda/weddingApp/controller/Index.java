@@ -3,7 +3,6 @@ package com.sda.weddingApp.controller;
 import com.sda.weddingApp.exception.InvalidRegisterData;
 import com.sda.weddingApp.model.Account;
 import com.sda.weddingApp.model.CreateAccountRequest;
-import com.sda.weddingApp.model.Person;
 import com.sda.weddingApp.service.AccountService;
 import com.sda.weddingApp.service.PersonService;
 import lombok.RequiredArgsConstructor;
@@ -45,7 +44,7 @@ public class Index {
     @GetMapping("/survey")
     public String getSurveyPage(Model model){
         model.addAttribute("today", LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-        return "survey";
+        return "survey-add";
     }
 
     @PostMapping("/register")
