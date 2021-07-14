@@ -6,6 +6,7 @@ import com.sda.weddingApp.model.Person;
 import com.sda.weddingApp.repository.AccountRepository;
 import com.sda.weddingApp.repository.AccountRoleRepository;
 import com.sda.weddingApp.repository.PersonRepository;
+import com.sda.weddingApp.repository.TypeofTaskRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;

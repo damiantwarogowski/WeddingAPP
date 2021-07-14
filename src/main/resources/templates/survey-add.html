@@ -15,33 +15,28 @@
     <div class="row col-md-12 form-input-row">
         <ul>
             <li>
-                <p><b>1: When are you planning to get married ?</b></p>
+                <form th:action="@{/survey/submit}" method="post">
 
-                <input type="date" th:min="${today}" th:value="${today}"/>
-                <br/><br/>
+                    <p><b>1: When are you planning to get married ?</b></p>
+                    <input type="date" name="weddingDate" th:min="${today}" th:value="${today}"/>
+                    <br/><br/>
 
+                    <input type="time" name="weddingTime"/>
+                    <br/><br/>
 
-                <p><b>2: Are you getting married in a church ?</b></p>
+                    <p><b>2: Do You want DJ ?</b></p>
+                    <input type="checkbox" name="taskDJ">
+                    <br/>
 
-                <input type="radio" name="InChurch" value=" yes">Yes<br>
-                <input type="radio" name="InChurch" value=" no">No<br>
-                <br/>
+                    <p><b>3: Do You want Band ?</b></p>
+                    <input type="checkbox" name="taskBand">
+                    <br/>
 
-                <p><b>3: Are you getting a civil marriage ?</b></p>
-                <input type="radio" name="IsCivil" value=" yes">Yes<br>
-                <input type="radio" name="IsCivil" value=" no">No<br>
-                <br/>
-
-                <p><b>4: Who in your relationship is mostly right ?</b></p>
-                <input type="radio" name="IsCivil" value=" yes">She...(Currently this question should be asked after
-                words "I do".)<br>
-
-                <br/>
-
-                <p><b>5: When are you planning to get divorce ?</b></p>
-
-                <input type="date" th:min="${today}" th:value="${today}"/>
-                <br/><br/>
+                    <p><b>4: Do You want wedding venue ?</b></p>
+                    <input type="checkbox" name="taskVenue">
+                    <br/>
+                    <input type="submit">
+                </form>
             </li>
         </ul>
     </div>

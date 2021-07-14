@@ -6,6 +6,7 @@ import com.sda.weddingApp.repository.AccountRepository;
 import com.sda.weddingApp.repository.AccountRoleRepository;
 import com.sda.weddingApp.repository.PersonRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
