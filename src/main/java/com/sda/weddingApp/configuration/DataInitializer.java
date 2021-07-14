@@ -3,6 +3,7 @@ package com.sda.weddingApp.configuration;
 import com.sda.weddingApp.model.Account;
 import com.sda.weddingApp.model.AccountRole;
 import com.sda.weddingApp.model.Person;
+import com.sda.weddingApp.model.TypeOfTask;
 import com.sda.weddingApp.repository.AccountRepository;
 import com.sda.weddingApp.repository.AccountRoleRepository;
 import com.sda.weddingApp.repository.PersonRepository;
@@ -16,6 +17,8 @@ import org.springframework.stereotype.Component;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+
+import static com.sda.weddingApp.configuration.TaskNames.*;
 
 /**
  * Klasa inicjalizuje dane i metoda onApplicationEvent jest wywołana RAZ w momencie załdowania aplikacji.
@@ -32,10 +35,21 @@ public class DataInitializer implements ApplicationListener<ContextRefreshedEven
 
     private final static String[] AVAILABLE_ROLES = {ROLE_ADMIN, ROLE_USER, ROLE_SUPERVISOR};
 
+    private final static String[] DEFAULT_TYPES_OF_TASKS = {
+            TASK_BAND,
+            TASK_DJ,
+            TASK_VENUE,
+            "Samochód",
+            "Alkohol",
+            "Zaproszenia"
+    };
+
     private final PasswordEncoder passwordEncoder;
     private final AccountRepository accountRepository;
     private final AccountRoleRepository accountRoleRepository;
     private final PersonRepository personRepository;
+
+    private final TypeofTaskRepository typeofTaskRepository;
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
@@ -44,7 +58,22 @@ public class DataInitializer implements ApplicationListener<ContextRefreshedEven
         }
 
         addUser(ADMIN_USERNAME, ADMIN_PASSWORD, "admin@admin.pl", AVAILABLE_ROLES);
-        addUser("user", "resu", "user@user.pl", new String[] {ROLE_USER});
+        addUser("user", "resu", "user@user.pl", new String[]{ROLE_USER});
+
+        for(String task : DEFAULT_TYPES_OF_TASKS){
+            addTask(task);
+        }
+    }
+
+    private void addTask(String task) {
+        Optional<TypeOfTask> optionalTypeOfTask = typeofTaskRepository.findByName(task);
+        if (!optionalTypeOfTask.isPresent()) {
+            TypeOfTask typeOfTask = TypeOfTask.builder()
+                    .name(task)
+                    .build();
+
+            typeofTaskRepository.save(typeOfTask);
+        }
     }
 
     private void addUser(String username, String password, String email, String[] roles) {
@@ -70,7 +99,7 @@ public class DataInitializer implements ApplicationListener<ContextRefreshedEven
             Set<AccountRole> rolesSet = new HashSet<>();
             for (String role : roles) {
                 Optional<AccountRole> optionalAccountRole = accountRoleRepository.findByName(role);
-                if(optionalAccountRole.isPresent()){
+                if (optionalAccountRole.isPresent()) {
                     AccountRole accountRole = optionalAccountRole.get();
                     rolesSet.add(accountRole);
                 }

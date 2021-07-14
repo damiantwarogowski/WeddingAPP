@@ -8,6 +8,7 @@ import java.util.Set;
 
 @Data
 @Entity
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class TypeOfTask {
@@ -21,4 +22,6 @@ public class TypeOfTask {
     @JsonBackReference
     @EqualsAndHashCode.Exclude
     private Set<TaskToDo> tasks;
+
+    // todo: dodać pole "czy pytamy o ten rodzaj zadania w ankiecie?"
 }

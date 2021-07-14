@@ -41,12 +41,6 @@ public class Index {
         return "register";
     }
 
-    @GetMapping("/survey")
-    public String getSurveyPage(Model model){
-        model.addAttribute("today", LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-        return "survey-add";
-    }
-
     @PostMapping("/register")
     public String submitRegisterPage(Model model, CreateAccountRequest request){
         try{

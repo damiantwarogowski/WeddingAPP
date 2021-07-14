@@ -8,7 +8,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.security.Principal;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Slf4j
 @Controller
@@ -16,11 +21,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 public class WeddingFormController {
     private final WeddingFormService weddingFormService;
+    private final AccountService accountService;
 
-    @GetMapping("/add")
-    public String addWeddingForm(Model model, Long wedding_to_which_we_want_to_add_form){
-//        model.addAttribute("newWeddingForm", new WeddingForm()); - nie powinno być takiej klasy?
-        model.addAttribute("hiddenStudentId", wedding_to_which_we_want_to_add_form);
+    @GetMapping("")
+    public String getSurveyPage(Model model){
+        model.addAttribute("today", LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         return "survey-add";
+    }
+
+    @PostMapping("/submit")
+    public String submitSurvey(SurveyAnswers answers, Principal principal){
+        weddingFormService.createWedding(answers, accountService.extractIdFromPrincipal(principal));
+        return "redirect:/";
     }
 }

@@ -10,6 +10,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -114,5 +115,17 @@ public class AccountService {
             }
         }
         // jeśli nie return'ował to znaczy że roli nie ma
+    }
+
+
+    public Long extractIdFromPrincipal(Principal principal) {
+        if(principal instanceof UsernamePasswordAuthenticationToken){
+            UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = (UsernamePasswordAuthenticationToken) principal;
+            if(usernamePasswordAuthenticationToken.getPrincipal() instanceof Account) {
+                Account account = (Account) usernamePasswordAuthenticationToken.getPrincipal();
+                return account.getId();
+            }
+        }
+        throw new UnsupportedOperationException("Musisz być zalogowany!");
     }
 }
