@@ -2,7 +2,7 @@ package com.sda.weddingApp.controller;
 
 import com.sda.weddingApp.model.dto.SurveyAnswers;
 import com.sda.weddingApp.service.AccountService;
-import com.sda.weddingApp.service.WeddingFormService;
+import com.sda.weddingApp.service.WeddingService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -19,19 +19,19 @@ import java.time.format.DateTimeFormatter;
 @Controller
 @RequestMapping("/survey")
 @RequiredArgsConstructor
-public class WeddingFormController {
-    private final WeddingFormService weddingFormService;
+public class SurveyController {
+    private final WeddingService weddingService;
     private final AccountService accountService;
 
     @GetMapping("")
-    public String getSurveyPage(Model model){
+    public String getSurveyPage(Model model) {
         model.addAttribute("today", LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         return "survey-add";
     }
 
     @PostMapping("/submit")
-    public String submitSurvey(SurveyAnswers answers, Principal principal){
-        weddingFormService.createWedding(answers, accountService.extractIdFromPrincipal(principal));
+    public String submitSurvey(SurveyAnswers answers, Principal principal) {
+        weddingService.createWedding(answers, accountService.extractIdFromPrincipal(principal));
         return "redirect:/";
     }
 }
