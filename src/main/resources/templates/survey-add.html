@@ -17,24 +17,101 @@
             <li>
                 <form th:action="@{/survey/submit}" method="post">
 
-                    <p><b>1: When are you planning to get married ?</b></p>
+                    <p><b>1: When are You planning to get married?</b></p>
                     <input type="date" name="weddingDate" th:min="${today}" th:value="${today}"/>
                     <br/><br/>
 
                     <input type="time" name="weddingTime"/>
                     <br/><br/>
 
-                    <p><b>2: Do You want DJ ?</b></p>
+                    <p><b>2: What time are You planning to have a wedding party?</b></p>
+                    <input type="time" name="weddingPartyTime"/>
+                    <br/><br/>
+
+                    <p><b>3: Do You want a DJ?</b></p>
                     <input type="checkbox" name="taskDJ">
                     <br/>
 
-                    <p><b>3: Do You want Band ?</b></p>
+                    <p><b>4: Do You want a Band?</b></p>
                     <input type="checkbox" name="taskBand">
                     <br/>
 
-                    <p><b>4: Do You want wedding venue ?</b></p>
+                    <p><b>5: Do You want a wedding venue?</b></p>
                     <input type="checkbox" name="taskVenue">
                     <br/>
+
+                    <p><b>6: Do You want to rent a wedding car?</b></p>
+                    <input type="checkbox" name="taskAuto">
+                    <br/>
+
+                    <p><b>7: Do You want to buy alcohol?</b></p>
+                    <input type="checkbox" name="taskAlcohol">
+                    <br/>
+
+                    <p><b>8: Do You want to send invitations to your guests?</b></p>
+                    <input type="checkbox" name="taskInvitations">
+                    <br/>
+
+                    <p><b>9: Do You want a photographer?</b></p>
+                    <input type="checkbox" name="taskPhotographer">
+                    <br/>
+
+                    <p><b>10: Do You want a camerman?</b></p>
+                    <input type="checkbox" name="taskPhotographer">
+                    <br/>
+
+                    <p><b>11: Do You want to buy wedding rings together?</b></p>
+                    <input type="checkbox" name="taskRingsTogether">
+                    <br/>
+
+                    <p><b>12: Do You want to buy wedding rings separately?</b></p>
+                    <input type="checkbox" name="taskRingsSeparately">
+                    <br/>
+
+                    <h3>Questions about first person </h3>
+
+                    <p><b>1: Do You want to buy outfit?</b></p>
+                    <input type="checkbox" name="taskOutfit1">
+                    <br/>
+
+                    <p><b>2: Do You want to go to a hairdresser before the wedding?</b></p>
+                    <input type="checkbox" name="taskHairdresser1">
+                    <br/>
+
+                    <p><b>3: Do You want to go to a barber before the wedding?</b></p>
+                    <input type="checkbox" name="taskBarber1">
+                    <br/>
+
+                    <p><b>4: Do You want to go to a makeup artist before the wedding?</b></p>
+                    <input type="checkbox" name="taskMakeupArtist1">
+                    <br/>
+
+                    <p><b>5: Do You want to go to do a manicure/pedicure before the wedding?</b></p>
+                    <input type="checkbox" name="taskManiPediCure1">
+                    <br/>
+
+                    <h3>Questions about secound person </h3>
+
+                    <p><b>1: Do You want to buy outfit?</b></p>
+                    <input type="checkbox" name="taskOutfit2">
+                    <br/>
+
+                    <p><b>2: Do You want to go to a hairdresser before the wedding?</b></p>
+                    <input type="checkbox" name="taskHairdresser2">
+                    <br/>
+
+                    <p><b>3: Do You want to go to a barber before the wedding?</b></p>
+                    <input type="checkbox" name="taskBarber2">
+                    <br/>
+
+                    <p><b>4: Do You want to go to a makeup artist before the wedding?</b></p>
+                    <input type="checkbox" name="taskMakeupArtist2">
+                    <br/>
+
+                    <p><b>5: Do You want to go to do a manicure/pedicure before the wedding?</b></p>
+                    <input type="checkbox" name="taskManiPediCure2">
+                    <br/>
+
                     <input type="submit">
                 </form>
             </li>
