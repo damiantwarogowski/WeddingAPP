@@ -8,116 +8,210 @@
 <body>
 <th:block th:replace="fragments :: navigator" th:remove="tag"/>
 
-<div class="panel-heading">Questions about the wedding</div>
-<div class="panel-body">
-    <h2>Questions about the wedding</h2>
+<main>
+    <div class="container marketing">
+        <hr>
+        <h2>Questions about the wedding</h2>
+        <form th:action="@{/survey/submit}" method="post">
+            <div class="row col-12 form-container">
+                <div class="row col-md-12 form-input-row">
+                    <div class="col-md-6">
+                        <label>1: When are You planning to get married?</label>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="date" name="weddingDate" th:min="${today}" th:value="${today}"/>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="time" name="weddingTime"/>
+                    </div>
+                </div>
+                <div class="row col-md-12 form-input-row">
+                    <div class="col-md-6">
+                        <label>2: What time are You planning to have a wedding party?</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="time" name="weddingPartyTime"/>
+                    </div>
+                </div>
+                <div class="row col-md-12 form-input-row">
+                    <div class="col-md-6">
+                        <label>3: Do You want a DJ?</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="checkbox" name="taskDJ">
+                    </div>
+                </div>
 
-    <div class="row col-md-12 form-input-row">
-        <ul>
-            <li>
-                <form th:action="@{/survey/submit}" method="post">
+                <div class="row col-md-12 form-input-row">
+                    <div class="col-md-6">
+                        <label>4: Do You want a Band?</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="checkbox" name="taskBand">
+                    </div>
+                </div>
+                <div class="row col-md-12 form-input-row">
+                    <div class="col-md-6">
+                        <label>5: Do You want a wedding venue?</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="checkbox" name="taskVenue">
+                    </div>
+                </div>
+                <div class="row col-md-12 form-input-row">
+                    <div class="col-md-6">
+                        <label>6: Do You want to rent a wedding car?</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="checkbox" name="taskAuto">
+                    </div>
+                </div>
 
-                    <p><b>1: When are You planning to get married?</b></p>
-                    <input type="date" name="weddingDate" th:min="${today}" th:value="${today}"/>
-                    <br/><br/>
+                <div class="row col-md-12 form-input-row">
+                    <div class="col-md-6">
+                        <label>7: Do You want to buy alcohol?</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="checkbox" name="taskAlcohol">
+                    </div>
+                </div>
 
-                    <input type="time" name="weddingTime"/>
-                    <br/><br/>
+                <div class="row col-md-12 form-input-row">
+                    <div class="col-md-6">
+                        <label>8: Do You want to send invitations to your guests?</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="checkbox" name="taskInvitations">
+                    </div>
+                </div>
+                <div class="row col-md-12 form-input-row">
+                    <div class="col-md-6">
+                        <label>9: Do You want a photographer?</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="checkbox" name="taskPhotographer">
+                    </div>
+                </div>
+                <div class="row col-md-12 form-input-row">
+                    <div class="col-md-6">
+                        <label>10: Do You want a camerman?</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="checkbox" name="taskPhotographer">
+                    </div>
+                </div>
 
-                    <p><b>2: What time are You planning to have a wedding party?</b></p>
-                    <input type="time" name="weddingPartyTime"/>
-                    <br/><br/>
-
-                    <p><b>3: Do You want a DJ?</b></p>
-                    <input type="checkbox" name="taskDJ">
-                    <br/>
-
-                    <p><b>4: Do You want a Band?</b></p>
-                    <input type="checkbox" name="taskBand">
-                    <br/>
-
-                    <p><b>5: Do You want a wedding venue?</b></p>
-                    <input type="checkbox" name="taskVenue">
-                    <br/>
-
-                    <p><b>6: Do You want to rent a wedding car?</b></p>
-                    <input type="checkbox" name="taskAuto">
-                    <br/>
-
-                    <p><b>7: Do You want to buy alcohol?</b></p>
-                    <input type="checkbox" name="taskAlcohol">
-                    <br/>
-
-                    <p><b>8: Do You want to send invitations to your guests?</b></p>
-                    <input type="checkbox" name="taskInvitations">
-                    <br/>
-
-                    <p><b>9: Do You want a photographer?</b></p>
-                    <input type="checkbox" name="taskPhotographer">
-                    <br/>
-
-                    <p><b>10: Do You want a camerman?</b></p>
-                    <input type="checkbox" name="taskPhotographer">
-                    <br/>
-
-                    <p><b>11: Do You want to buy wedding rings together?</b></p>
-                    <input type="checkbox" name="taskRingsTogether">
-                    <br/>
-
-                    <p><b>12: Do You want to buy wedding rings separately?</b></p>
-                    <input type="checkbox" name="taskRingsSeparately">
-                    <br/>
-
-                    <h3>Questions about first person </h3>
-
-                    <p><b>1: Do You want to buy outfit?</b></p>
-                    <input type="checkbox" name="taskOutfit1">
-                    <br/>
-
-                    <p><b>2: Do You want to go to a hairdresser before the wedding?</b></p>
-                    <input type="checkbox" name="taskHairdresser1">
-                    <br/>
-
-                    <p><b>3: Do You want to go to a barber before the wedding?</b></p>
-                    <input type="checkbox" name="taskBarber1">
-                    <br/>
-
-                    <p><b>4: Do You want to go to a makeup artist before the wedding?</b></p>
-                    <input type="checkbox" name="taskMakeupArtist1">
-                    <br/>
-
-                    <p><b>5: Do You want to go to do a manicure/pedicure before the wedding?</b></p>
-                    <input type="checkbox" name="taskManiPediCure1">
-                    <br/>
-
-                    <h3>Questions about secound person </h3>
-
-                    <p><b>1: Do You want to buy outfit?</b></p>
-                    <input type="checkbox" name="taskOutfit2">
-                    <br/>
-
-                    <p><b>2: Do You want to go to a hairdresser before the wedding?</b></p>
-                    <input type="checkbox" name="taskHairdresser2">
-                    <br/>
-
-                    <p><b>3: Do You want to go to a barber before the wedding?</b></p>
-                    <input type="checkbox" name="taskBarber2">
-                    <br/>
-
-                    <p><b>4: Do You want to go to a makeup artist before the wedding?</b></p>
-                    <input type="checkbox" name="taskMakeupArtist2">
-                    <br/>
-
-                    <p><b>5: Do You want to go to do a manicure/pedicure before the wedding?</b></p>
-                    <input type="checkbox" name="taskManiPediCure2">
-                    <br/>
-
-                    <input type="submit">
-                </form>
-            </li>
-        </ul>
+                <div class="row col-md-12 form-input-row">
+                    <div class="col-md-6">
+                        <label>11: Do You want to buy wedding rings together?</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="checkbox" name="taskRingsTogether">
+                    </div>
+                </div>
+                <div class="row col-md-12 form-input-row">
+                    <div class="col-md-6">
+                        <label>12: Do You want to buy wedding rings separately?</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="checkbox" name="taskRingsSeparately">
+                    </div>
+                </div>
+            </div>
+            <div class="row col-12 form-container">
+                <div class="row col-6">
+                    <h2>Questions about first person</h2>
+                    <div class="row col-12 ">
+                        <div class="col-md-11">
+                            <label>1: Do You want to buy outfit?</label>
+                        </div>
+                        <div class="col-md-1">
+                            <input type="checkbox" name="taskOutfit1">
+                        </div>
+                    </div>
+                    <div class="row col-12 ">
+                        <div class="col-md-11">
+                            <label>2: Do You want to go to a hairdresser before the wedding?</label>
+                        </div>
+                        <div class="col-md-1">
+                            <input type="checkbox" name="taskHairdresser1">
+                        </div>
+                    </div>
+                    <div class="row col-12 ">
+                        <div class="col-md-11">
+                            <label>3: Do You want to go to a barber before the wedding?</label>
+                        </div>
+                        <div class="col-md-1">
+                            <input type="checkbox" name="taskBarber1">
+                        </div>
+                    </div>
+                    <div class="row col-12 ">
+                        <div class="col-md-11">
+                            <label>4: Do You want to go to a makeup artist before the wedding?</label>
+                        </div>
+                        <div class="col-md-1">
+                            <input type="checkbox" name="taskMakeupArtist1">
+                        </div>
+                    </div>
+                    <div class="row col-12 ">
+                        <div class="col-md-11">
+                            <label>5: Do You want to go to do a manicure/pedicure before the wedding?</label>
+                        </div>
+                        <div class="col-md-1">
+                            <input type="checkbox" name="taskManiPediCure1">
+                        </div>
+                    </div>
+                </div>
+                <div class="row col-6 ">
+                    <h2>Questions about secound person</h2>
+                    <div class="row col-12 ">
+                        <div class="col-md-11">
+                            <label>1: Do You want to buy outfit?</label>
+                        </div>
+                        <div class="col-md-1">
+                            <input type="checkbox" name="taskOutfit2">
+                        </div>
+                    </div>
+                    <div class="row col-12 ">
+                        <div class="col-md-11">
+                            <label>2: Do You want to go to a hairdresser before the wedding?</label>
+                        </div>
+                        <div class="col-md-1">
+                            <input type="checkbox" name="taskHairdresser2">
+                        </div>
+                    </div>
+                    <div class="row col-12 ">
+                        <div class="col-md-11">
+                            <label>3: Do You want to go to a barber before the wedding?</label>
+                        </div>
+                        <div class="col-md-1">
+                            <input type="checkbox" name="taskBarber2">
+                        </div>
+                    </div>
+                    <div class="row col-12 ">
+                        <div class="col-md-11">
+                            <label>4: Do You want to go to a makeup artist before the wedding?</label>
+                        </div>
+                        <div class="col-md-1">
+                            <input type="checkbox" name="taskMakeupArtist2">
+                        </div>
+                    </div>
+                    <div class="row col-12 ">
+                        <div class="col-md-11">
+                            <label>5: Do You want to go to do a manicure/pedicure before the wedding?</label>
+                        </div>
+                        <div class="col-md-1">
+                            <input type="checkbox" name="taskManiPediCure2">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row col-12 form-container">
+                <input class="form-control btn btn-submit" type="submit">
+            </div>
+        </form>
     </div>
-</div>
+</main>
 <th:block th:replace="fragments :: scripts" th:remove="tag"/>
 </body>
 </html>
