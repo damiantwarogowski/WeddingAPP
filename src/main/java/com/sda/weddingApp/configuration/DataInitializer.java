@@ -39,9 +39,26 @@ public class DataInitializer implements ApplicationListener<ContextRefreshedEven
             TASK_BAND,
             TASK_DJ,
             TASK_VENUE,
-            "Samochód",
-            "Alkohol",
-            "Zaproszenia"
+            TASK_AUTO,
+            TASK_ALCOHOL,
+            TASK_INVITATIONS,
+            TASK_RINGS,
+            TASK_PHOTOGRAPHER,
+            TASK_CAMERAMAN,
+
+            TASK_RINGS1,
+            TASK_OUTFIT1,
+            TASK_HAIRDRESSER1,
+            TASK_BARBER1,
+            TASK_MAKEUP_ARTIST1,
+            TASK_MANI_PEDI_CURE1,
+
+            TASK_RINGS2,
+            TASK_OUTFIT2,
+            TASK_HAIRDRESSER2,
+            TASK_BARBER2,
+            TASK_MAKEUP_ARTIST2,
+            TASK_MANI_PEDI_CURE2,
     };
 
     private final PasswordEncoder passwordEncoder;
@@ -60,7 +77,7 @@ public class DataInitializer implements ApplicationListener<ContextRefreshedEven
         addUser(ADMIN_USERNAME, ADMIN_PASSWORD, "admin@admin.pl", AVAILABLE_ROLES);
         addUser("user", "resu", "user@user.pl", new String[]{ROLE_USER});
 
-        for(String task : DEFAULT_TYPES_OF_TASKS){
+        for (String task : DEFAULT_TYPES_OF_TASKS) {
             addTask(task);
         }
     }
