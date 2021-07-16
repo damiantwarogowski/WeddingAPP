@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -28,6 +29,16 @@ public class WeddingController {
 
         model.addAttribute("weddingsList", weddingList);
         return "wedding-list";
+    }
+
+    @GetMapping("/details/{identifier}")
+    public String getAllWeddings(Model model, @PathVariable Long identifier) {
+        Optional<Wedding> weddingOptional = weddingService.getWeddingWithId(identifier);
+        if(weddingOptional.isPresent()){
+            model.addAttribute("wedding", weddingOptional.get());
+            return "wedding-details";
+        }
+        return "redirect:/wedding/weddings";
     }
 
     @GetMapping("/remove")
