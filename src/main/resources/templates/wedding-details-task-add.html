@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello Index Page!</title>
+    <th:block th:replace="fragments :: link-styles" th:remove="tag"/>
+</head>
+<body>
+<th:block th:replace="fragments :: navigator" th:remove="tag"/>
+<main>
+    <div class="container marketing">
+
+        <h2>Adding a wedding task</h2>
+        <form th:action="@{wedding/details/submit}" method="post">
+            <div class="row col-12">
+                <div class="col-md-9"></div>
+            </div>
+            <div class="row col-12 form-container">
+                <div class="row col-md-12">
+                    <div class="row col-md-12 list-header-row">
+                        <div class="col-2">Id</div>
+                        <div class="col-2">Reminder day</div>
+                        <div class="col-2">Deadline day</div>
+                        <div class="col-3">Type of task</div>
+                        <div class="col-3"></div>
+<!--                    </div>-->
+<!--                    <div th:each="task : ${wedding.addTasks()}" class="row col-md-12 list-data-row">-->
+<!--                        <div class="col-2" th:text="${task.id}"></div>-->
+<!--                        <div class="col-2" th:text="${task.reminderDay}"></div>-->
+<!--                        <div class="col-2" th:text="${task.deadlineDay}"></div>-->
+<!--                        <div class="col-3" th:text="${task.typeOfTask.name}"></div>-->
+<!--                        <div class="col-3">-->
+<!--                        </div>-->
+<!--                    </div>-->
+                </div>
+            </div>
+            <div class="row col-12 form-container">
+                <input class="form-control btn btn-submit" type="submit">
+            </div>
+        </form>
+    </div>
+</main>
+<th:block th:replace="fragments :: scripts" th:remove="tag"/>
+</body>
+</html>
