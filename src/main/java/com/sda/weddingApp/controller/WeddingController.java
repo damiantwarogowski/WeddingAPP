@@ -40,13 +40,20 @@ public class WeddingController {
         }
         return "redirect:/wedding/weddings";
     }
-
+// ZOBACZYC CO TO JEST. PAWEL TO ROBIL CZY JA?
     @GetMapping("/remove")
-    public String removeWedding(@RequestParam(name = "id") Long identyfikatorek) {
-        weddingService.removeWedding(identyfikatorek);
+    public String removeWedding(@RequestParam(name = "id") Long identificatory) {
+        weddingService.removeWedding(identificatory);
 
         return "redirect:/wedding";
     }
+
+//    @GetMapping("/remove")
+//    public String removeWedding(Long weddingId, Long weddingId){
+//        weddingService.removeWedding(weddingId);
+//
+//        // po tym jak usuniemy studenta wracamy na stronę z listą (lub wrócimy do miejsca które nas redirectowało)
+//        return "redirect:/wedding/details?weddingId="+ weddingId;
 
     @GetMapping("/edit")
     public String editWedding(Model model, @RequestParam(name = "id_wedding_to_edit") Long id) {

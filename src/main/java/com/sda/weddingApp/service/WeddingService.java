@@ -132,14 +132,15 @@ public class WeddingService {
     public Optional<Wedding> getWeddingWithId(Long id) {
         return weddingRepository.findById(id);
     }
-//    public boolean removeWeddingWithId(Long id) {
-//        Optional<Wedding> weddingOptional = getWeddingWithId(id);
-//        if(weddingOptional.isPresent()){
-//            removeWeddingWithId(id);
-//            return true;
-//        }
-//        return false;
-//    }
+
+    public boolean removeWeddingWithId(Long id) {
+        Optional<Wedding> weddingOptional = getWeddingWithId(id);
+        if(weddingOptional.isPresent()){
+            removeWeddingWithId(id);
+            return true;
+        }
+        return false;
+    }
 //
 //    public Optional<WeddingDto> update(Long id, WeddingDto weddingDto) {
 //        Optional<Wedding> weddingOptional = getWeddingWithId(id);
