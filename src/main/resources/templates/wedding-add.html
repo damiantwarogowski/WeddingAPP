@@ -1,33 +1,33 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-  <meta charset="UTF-8">
-  <title>Wedding list</title>
-  <style>
-    td{
-      border: 1px solid #00ff19;
-    }
-  </style>
-</head>
-<body>
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--  <meta charset="UTF-8">-->
+<!--  <title>Wedding list</title>-->
+<!--  <style>-->
+<!--    td{-->
+<!--      border: 1px solid #00ff19;-->
+<!--    }-->
+<!--  </style>-->
+<!--</head>-->
+<!--<body>-->
 
-<ul>
-  <li>
-    <a th:href="@{/wedding}">Lista</a>
-  </li>
-  <li>
-    <a th:href="@{/wedding/add}">Dodaj</a>
-  </li>
-</ul>
+<!--<ul>-->
+<!--  <li>-->
+<!--    <a th:href="@{/wedding}">Lista</a>-->
+<!--  </li>-->
+<!--  <li>-->
+<!--    <a th:href="@{/wedding/add}">Dodaj</a>-->
+<!--  </li>-->
+<!--</ul>-->
 
-<form th:action="@{/wedding/add}" method="post" th:object="${new_wedding}">
-  <input type="number" hidden th:field="*{id}">
-  <input type="text" th:field="*{couple}">
-  <input type="date" th:field="*{dateOfWedding}">
-  <input type="time" th:field="*{timeOfWedding}">
-  <input type="time" th:field="*{timeOfWeddingParty}">
-  <input type="submit">
-</form>
+<!--<form th:action="@{/wedding/add}" method="post" th:object="${new_wedding}">-->
+<!--  <input type="number" hidden th:field="*{id}">-->
+<!--  <input type="text" th:field="*{couple}">-->
+<!--  <input type="date" th:field="*{dateOfWedding}">-->
+<!--  <input type="time" th:field="*{timeOfWedding}">-->
+<!--  <input type="time" th:field="*{timeOfWeddingParty}">-->
+<!--  <input type="submit">-->
+<!--</form>-->
 
-</body>
-</html>
+<!--</body>-->
+<!--</html>-->

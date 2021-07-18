@@ -26,10 +26,6 @@ public class TaskToDo {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate deadlineDay;
 
-    // todo: wywalić to poniżej
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate weddingDate;
-
     @ManyToOne()
     @ToString.Exclude
     @JsonBackReference
