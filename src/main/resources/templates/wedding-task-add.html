@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Survey Page</title>
+    <th:block th:replace="fragments :: link-styles" th:remove="tag"/>
+</head>
+<body>
+<th:block th:replace="fragments :: navigator" th:remove="tag"/>
+
+<main>
+    <div class="container marketing">
+        <hr>
+        <h2>Add task:</h2>
+        <form th:action="@{/tasks/add}" method="post" th:object="${new_task}">
+            <input type="number" readonly hidden th:value="${weddingId}" name="weddingId">
+            <div class="row col-12 form-container">
+                <div class="row col-md-12 form-input-row">
+                    <div class="col-md-6">
+                        <label>Type Of Task:</label>
+                    </div>
+                    <div class="col-md-6">
+                        <select name="type_of_task_id">
+                            <option th:each="typet : ${all_types_of_tasks}" th:text="${typet.name}"
+                                    th:value="${typet.id}"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row col-md-12 form-input-row">
+                    <div class="col-md-6">
+                        <label>Your own type of task:</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" name="ownTypeOfTask"/>
+                    </div>
+                </div>
+                <div class="row col-md-12 form-input-row">
+                    <div class="col-md-6">
+                        <label>Deadline day:</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="date" th:field="*{deadlineDay}"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row col-12 form-container">
+                <input class="form-control btn btn-submit" type="submit">
+            </div>
+        </form>
+    </div>
+</main>
+<th:block th:replace="fragments :: scripts" th:remove="tag"/>
+</body>
+</html>
