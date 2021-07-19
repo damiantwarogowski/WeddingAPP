@@ -119,6 +119,40 @@ public class WeddingService {
         }
     }
 
+    public void addTaskToWedding(Long weddingId, Long typeOfTaskId, TaskToDo task, String ownTypeOfTask) {
+        TypeOfTask taskType;
+        if (ownTypeOfTask == null || ownTypeOfTask.isEmpty()) {
+            Optional<TypeOfTask> optionalTaskType = typeofTaskRepository.findById(typeOfTaskId);
+            if (optionalTaskType.isPresent()) {
+                taskType = optionalTaskType.get();
+            } else {
+                taskType=optionalTaskType
+
+
+                taskToDoRepository.save(taskToDo);
+
+            }
+        }
+
+        // jeśli powyższe (if etc.) nie znalazło task'a w bazie, to znaczy że trzeba go dodać od nowa
+        // 1. tworzymy nowy task
+        // 2. dodajemy go do bazy
+        // zwrócony obiekt (zwrócony z metody save) przypisujemy do zmiennej taskType (wyżej)
+
+        Optional<Wedding> optionalWedding = weddingRepository.findById(weddingId);
+        if (optionalWedding.isPresent()) {
+            Wedding wedding = optionalWedding.get();
+
+            TaskToDo taskToDo = TaskToDo.builder()
+                    .typeOfTask(taskType)
+                    .deadlineDay(task.getDeadlineDay())
+                    .wedding(wedding)
+                    .build();
+
+            taskToDoRepository.save(taskToDo);
+        }
+    }
+
     public List<Wedding> getAll() {
         return weddingRepository.findAll();
     }
