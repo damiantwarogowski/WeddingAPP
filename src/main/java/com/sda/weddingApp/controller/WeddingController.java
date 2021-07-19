@@ -40,12 +40,12 @@ public class WeddingController {
         }
         return "redirect:/wedding/weddings";
     }
-// ZOBACZYC CO TO JEST. PAWEL TO ROBIL CZY JA?
-    @GetMapping("/remove")
-    public String removeWedding(@RequestParam(name = "id") Long identificatory) {
+
+    @GetMapping("/remove/{id}")
+    public String removeWedding(@PathVariable(name = "id") Long identificatory) {
         weddingService.removeWedding(identificatory);
 
-        return "redirect:/wedding";
+        return "redirect:/wedding/weddings";
     }
 
 //    @GetMapping("/remove")

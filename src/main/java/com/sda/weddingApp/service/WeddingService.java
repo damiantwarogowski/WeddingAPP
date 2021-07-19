@@ -50,56 +50,56 @@ public class WeddingService {
         if (answers.isTaskVenue()) {
             addTaskToWedding(wedding, TASK_VENUE, answers.getWeddingDate());
         }
-        if(answers.isTaskAuto()) {
+        if (answers.isTaskAuto()) {
             addTaskToWedding(wedding, TASK_AUTO, answers.getWeddingDate());
         }
-        if(answers.isTaskAlcohol()) {
+        if (answers.isTaskAlcohol()) {
             addTaskToWedding(wedding, TASK_ALCOHOL, answers.getWeddingDate());
         }
-        if(answers.isTaskInvitations()) {
+        if (answers.isTaskInvitations()) {
             addTaskToWedding(wedding, TASK_INVITATIONS, answers.getWeddingDate());
         }
-        if(answers.isTaskPhotographer()) {
+        if (answers.isTaskPhotographer()) {
             addTaskToWedding(wedding, TASK_PHOTOGRAPHER, answers.getWeddingDate());
         }
-        if(answers.isTaskRingsTogether()) {
+        if (answers.isTaskRingsTogether()) {
             addTaskToWedding(wedding, TASK_RINGS, answers.getWeddingDate());
         }
 
-        if(answers.isTaskRingsSeparately()){
+        if (answers.isTaskRingsSeparately()) {
             addTaskToWedding(wedding, TASK_RINGS1, answers.getWeddingDate());
             addTaskToWedding(wedding, TASK_RINGS2, answers.getWeddingDate());
         }
 
-        if(answers.isTaskOutfit1()) {
+        if (answers.isTaskOutfit1()) {
             addTaskToWedding(wedding, TASK_OUTFIT1, answers.getWeddingDate());
         }
-        if(answers.isTaskHairdresser1()) {
+        if (answers.isTaskHairdresser1()) {
             addTaskToWedding(wedding, TASK_HAIRDRESSER1, answers.getWeddingDate());
         }
-        if(answers.isTaskBarber1()) {
+        if (answers.isTaskBarber1()) {
             addTaskToWedding(wedding, TASK_BARBER1, answers.getWeddingDate());
         }
-        if(answers.isTaskMakeupArtist1()) {
+        if (answers.isTaskMakeupArtist1()) {
             addTaskToWedding(wedding, TASK_MAKEUP_ARTIST1, answers.getWeddingDate());
         }
-        if(answers.isTaskManiPediCure1()) {
+        if (answers.isTaskManiPediCure1()) {
             addTaskToWedding(wedding, TASK_MANI_PEDI_CURE1, answers.getWeddingDate());
         }
 
-        if(answers.isTaskOutfit2()) {
+        if (answers.isTaskOutfit2()) {
             addTaskToWedding(wedding, TASK_OUTFIT2, answers.getWeddingDate());
         }
-        if(answers.isTaskHairdresser2()) {
+        if (answers.isTaskHairdresser2()) {
             addTaskToWedding(wedding, TASK_HAIRDRESSER2, answers.getWeddingDate());
         }
-        if(answers.isTaskBarber2()) {
+        if (answers.isTaskBarber2()) {
             addTaskToWedding(wedding, TASK_BARBER2, answers.getWeddingDate());
         }
-        if(answers.isTaskMakeupArtist2()) {
+        if (answers.isTaskMakeupArtist2()) {
             addTaskToWedding(wedding, TASK_MAKEUP_ARTIST2, answers.getWeddingDate());
         }
-        if(answers.isTaskManiPediCure2()) {
+        if (answers.isTaskManiPediCure2()) {
             addTaskToWedding(wedding, TASK_MANI_PEDI_CURE2, answers.getWeddingDate());
         }
 
@@ -125,6 +125,11 @@ public class WeddingService {
     }
 
     public void removeWedding(Long id) {
+//        Optional<Wedding> weddingOptional = getWeddingWithId(id);
+//        if (weddingOptional.isPresent()) {
+//            Wedding wedding = weddingOptional.get();
+//
+//        }
         weddingRepository.deleteById(id);
     }
 
@@ -133,14 +138,6 @@ public class WeddingService {
         return weddingRepository.findById(id);
     }
 
-    public boolean removeWeddingWithId(Long id) {
-        Optional<Wedding> weddingOptional = getWeddingWithId(id);
-        if(weddingOptional.isPresent()){
-            removeWeddingWithId(id);
-            return true;
-        }
-        return false;
-    }
 //
 //    public Optional<WeddingDto> update(Long id, WeddingDto weddingDto) {
 //        Optional<Wedding> weddingOptional = getWeddingWithId(id);
