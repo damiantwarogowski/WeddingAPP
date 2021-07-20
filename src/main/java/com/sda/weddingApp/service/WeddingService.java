@@ -125,12 +125,23 @@ public class WeddingService {
             Optional<TypeOfTask> optionalTaskType = typeofTaskRepository.findById(typeOfTaskId);
             if (optionalTaskType.isPresent()) {
                 taskType = optionalTaskType.get();
-            } else {
-                taskType=optionalTaskType
+            }
+        } else{
+            Optional<TypeOfTask> optionalTaskType = typeofTaskRepository.findAll()
+                    .stream()
+                    .filter(tTask -> tTask.getName().equalsIgnoreCase(ownTypeOfTask))
+                    .findAny();
 
-
-                taskToDoRepository.save(taskToDo);
-
+            // gościu wpisał własne wejście
+            if (optionalTaskType.isPresent()) {
+                // znaleźliśmy
+                taskType = optionalTaskType.get();
+            }else{
+                // nie znaleźliśmy
+                // 1. tworzymy nowy task
+                TypeOfTask doDodania = TypeOfTask.builder().name(ownTypeOfTask).build();
+                // 2. dodajemy go do bazy
+                taskType = typeofTaskRepository.save(doDodania);
             }
         }
 
