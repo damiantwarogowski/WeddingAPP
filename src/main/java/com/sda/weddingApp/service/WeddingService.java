@@ -171,6 +171,17 @@ public class WeddingService {
         return weddingRepository.findById(id);
     }
 
+    public void editWedding(Wedding weddingInfo) {
+        Optional<Wedding> weddingOptional = weddingRepository.findById(weddingInfo.getId());
+        if(weddingOptional.isPresent()) {
+            Wedding wedding = weddingOptional.get();
+            wedding.setDateOfWedding(weddingInfo.getDateOfWedding());
+            wedding.setTimeOfWedding(weddingInfo.getTimeOfWedding());
+            wedding.setTimeOfWeddingParty(weddingInfo.getTimeOfWeddingParty());
+            weddingRepository.save(wedding);
+        }
+        log.info("Wedding edited.");
+    }
 //
 //    public Optional<WeddingDto> update(Long id, WeddingDto weddingDto) {
 //        Optional<Wedding> weddingOptional = getWeddingWithId(id);
@@ -182,4 +193,5 @@ public class WeddingService {
 //        }
 //        return Optional.empty();
 //    }
+
 }
