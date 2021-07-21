@@ -4,7 +4,6 @@ import com.sda.weddingApp.exception.InvalidRegisterData;
 import com.sda.weddingApp.model.Account;
 import com.sda.weddingApp.model.CreateAccountRequest;
 import com.sda.weddingApp.service.AccountService;
-import com.sda.weddingApp.service.PersonService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -15,8 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 @Slf4j
 @Controller
@@ -24,7 +21,6 @@ import java.time.format.DateTimeFormatter;
 @RequiredArgsConstructor
 public class Index {
     private final AccountService accountService;
-    private final PersonService personService;
 
     @GetMapping
     public String getIndex(){
@@ -70,8 +66,6 @@ public class Index {
             if(usernamePasswordAuthenticationToken.getPrincipal() instanceof Account) {
                 Account account = (Account) usernamePasswordAuthenticationToken.getPrincipal();
                 model.addAttribute("uzytkownik", account);
-
-                model.addAttribute("personList", personService.personList(account));
             }
         }
         return "authenticated";

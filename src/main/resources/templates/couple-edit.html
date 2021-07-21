@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Survey Page</title>
+    <title>Couple editor</title>
     <th:block th:replace="fragments :: link-styles" th:remove="tag"/>
 </head>
 <body>
@@ -11,28 +11,24 @@
 <main>
     <div class="container marketing">
         <hr>
-        <h2>Questions about the wedding to edit</h2>
-        <form th:action="@{/wedding/edit/submit}" method="post" th:object="${wedding_edit}">
+        <h2>Questions about couple</h2>
+        <form th:action="@{/couple/edit/submit}" method="post" th:object="${wedding}">
 
-            <input type="number" th:field="*{id}" hidden readonly>
+            <input th:field="*{id}" name="wedding" hidden readonly/>
             <div class="row col-12 form-container">
                 <div class="row col-md-12 form-input-row">
                     <div class="col-md-6">
-                        <label>1: When are You planning to get married?</label>
+                        <label>The first person who gets married</label>
                     </div>
-                    <div class="col-md-3">
-                        <input type="date" th:min="${today}" th:field="*{dateOfWedding}"/>
-                    </div>
-                    <div class="col-md-3">
-                        <input type="time" th:field="*{timeOfWedding}"/>
+                    <div class="col-md-6">
+                        <input type="text" th:field="">
                     </div>
                 </div>
                 <div class="row col-md-12 form-input-row">
                     <div class="col-md-6">
-                        <label>2: What time are You planning to have a wedding party?</label>
+                        <label>The secound person who gets married</label>
                     </div>
                     <div class="col-md-6">
-                        <input type="time" th:field="*{timeOfWeddingParty}"/>
                     </div>
                 </div>
             </div>

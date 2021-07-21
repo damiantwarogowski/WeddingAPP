@@ -128,6 +128,8 @@ public class WeddingService {
             Optional<TypeOfTask> optionalTaskType = typeofTaskRepository.findById(typeOfTaskId);
             if (optionalTaskType.isPresent()) {
                 taskType = optionalTaskType.get();
+
+
             }
         } else{
             Optional<TypeOfTask> optionalTaskType = typeofTaskRepository.findAll()
@@ -145,7 +147,14 @@ public class WeddingService {
                 TypeOfTask doDodania = TypeOfTask.builder().name(ownTypeOfTask).build();
                 // 2. dodajemy go do bazy
                 taskType = typeofTaskRepository.save(doDodania);
+
             }
+//            else {
+//                taskType=optionalTaskType
+//
+//                taskToDoRepository.save(taskToDo);
+//
+//            }
         }
         if( taskType == null){
             throw new UnsupportedOperationException("Unexpected error.");
@@ -156,7 +165,7 @@ public class WeddingService {
             Wedding wedding = optionalWedding.get();
 
             TaskToDo taskToDo = TaskToDo.builder()
-                    .typeOfTask(taskType)
+//                    .typeOfTask(taskType)
                     .deadlineDay(task.getDeadlineDay())
                     .wedding(wedding)
                     .build();
@@ -193,6 +202,17 @@ public class WeddingService {
             weddingRepository.save(wedding);
         }
         log.info("Wedding edited.");
+    }
+
+    public void editCouple(Wedding weddingInfo, Long personOneId, Long personTwoId) {
+        Optional<Wedding> weddingOptional = weddingRepository.findById(weddingInfo.getId());
+        if(weddingOptional.isPresent()) {
+            Wedding wedding = weddingOptional.get();
+            wedding.setCouple(weddingInfo.getCouple());
+
+            weddingRepository.save(wedding);
+        }
+        log.info("Couple edited.");
     }
 //
 //    public Optional<WeddingDto> update(Long id, WeddingDto weddingDto) {

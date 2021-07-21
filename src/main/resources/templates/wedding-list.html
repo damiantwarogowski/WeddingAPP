@@ -21,16 +21,17 @@
                     <div class="col-2" th:text="${wedding.getId()}"></div>
                     <div class="col-3" th:text="${wedding.getDateOfWedding()}"></div>
                     <div class="col-3" th:text="${wedding.getTimeOfWedding()}"></div>
+
                     <div class="col-2 row">
                         <a class="col-8" th:href="@{'/wedding/details/' + ${wedding.getId()}}">
                             <button type="button" class="btn btn-warning col-12">Details</button>
                         </a></div>
                     <div class="col-2 row">
                         <a class="col-8" th:href="@{'/wedding/remove/' + ${wedding.getId()}}">
-
                             <button type="button" class="btn btn-danger col-12">Remove</button>
                         </a>
                     </div>
+
                 </div>
             </div>
 </main>

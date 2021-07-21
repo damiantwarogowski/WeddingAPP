@@ -16,12 +16,11 @@ public class Couple {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //    1dowielu
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Person groom;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Person bride;
+    private String person1;
+
+
+    private String person2;
 
     @OneToOne(mappedBy = "couple")
     private Wedding wedding;

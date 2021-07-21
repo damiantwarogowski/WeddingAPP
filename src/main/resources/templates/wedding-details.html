@@ -10,12 +10,19 @@
 <main>
     <div class="container marketing">
         <h2>Wedding details</h2>
+
         <div class="row col-12">
-            <div class="col-md-9"></div>
-            <a class="col-3" th:href="@{'/wedding/edit/' + ${wedding.id}}">
+            <div class="col-md-7"></div>
+            <a class="col-2" th:href="@{'/wedding/couple/edit/' + ${wedding.id}}">
+                <button type="button" class="btn btn-warning col-12">Edit couple</button>
+            </a>
+            <div class="col-md-1"></div>
+
+            <a class="col-2" th:href="@{'/wedding/edit/' + ${wedding.id}}">
                 <button type="button" class="btn btn-danger col-12">Edit wedding</button>
             </a>
         </div>
+
         <div class="row col-12 form-container" th:object="${wedding}">
             <div class="row col-md-12 form-input-row">
                 <div class="col-md-6">Owner:</div>

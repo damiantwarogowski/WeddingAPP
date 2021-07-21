@@ -1,7 +1,7 @@
 package com.sda.weddingApp.controller;
 
+import com.sda.weddingApp.model.Account;
 import com.sda.weddingApp.model.Wedding;
-import com.sda.weddingApp.model.dto.SurveyAnswers;
 import com.sda.weddingApp.service.AccountService;
 import com.sda.weddingApp.service.WeddingService;
 import lombok.RequiredArgsConstructor;
@@ -10,11 +10,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.Principal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Controller
@@ -84,5 +84,22 @@ public class WeddingController {
     public String getSurveyPage(Model model) {
         model.addAttribute("today", LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         return "wedding-edit";
+    }
+
+    @GetMapping("/couple/edit/{identif}")
+    public String editCouple(Model model, @PathVariable(name="identif") Long id) {
+        Optional<Wedding> weddingToEdit = weddingService.getWeddingWithId(id);
+        if (weddingToEdit.isPresent()) {
+            Wedding wedding = weddingToEdit.get();
+            model.addAttribute("wedding", wedding);
+            return "couple-edit";
+        }
+        return "redirect:/wedding";
+    }
+
+    @PostMapping("/couple/edit/submit")
+    public String editCouple(Wedding wedding, Long couple_person_one, Long couple_person_two) {
+        weddingService.editCouple(wedding, couple_person_one, couple_person_two);
+        return "redirect:/";
     }
 }
