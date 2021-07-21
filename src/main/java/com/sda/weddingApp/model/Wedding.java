@@ -30,8 +30,9 @@ public class Wedding {
     private LocalTime timeOfWeddingParty;
 
     @OneToOne()
-    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     @JsonBackReference
+    @ToString.Exclude
     private Couple couple;
 
     @ManyToOne

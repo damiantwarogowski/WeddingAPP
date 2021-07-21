@@ -91,15 +91,17 @@ public class WeddingController {
         Optional<Wedding> weddingToEdit = weddingService.getWeddingWithId(id);
         if (weddingToEdit.isPresent()) {
             Wedding wedding = weddingToEdit.get();
-            model.addAttribute("wedding", wedding);
+            model.addAttribute("wedding_id", wedding.getId());
+            model.addAttribute("person_one", wedding.getCouple().getPerson1());
+            model.addAttribute("person_two", wedding.getCouple().getPerson2());
             return "couple-edit";
         }
-        return "redirect:/wedding";
+        return "redirect:/wedding/details/"+id;
     }
 
     @PostMapping("/couple/edit/submit")
-    public String editCouple(Wedding wedding, Long couple_person_one, Long couple_person_two) {
-        weddingService.editCouple(wedding, couple_person_one, couple_person_two);
-        return "redirect:/";
+    public String editCouple(Long wedding_id, String person_one_name, String person_two_name) {
+        weddingService.editCouple(wedding_id, person_one_name, person_two_name);
+        return "redirect:/wedding/details/"+wedding_id;
     }
 }

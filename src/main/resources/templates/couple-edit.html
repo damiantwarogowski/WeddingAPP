@@ -12,16 +12,15 @@
     <div class="container marketing">
         <hr>
         <h2>Questions about couple</h2>
-        <form th:action="@{/couple/edit/submit}" method="post" th:object="${wedding}">
-
-            <input th:field="*{id}" name="wedding" hidden readonly/>
+        <form th:action="@{/wedding/couple/edit/submit}" method="post">
+            <input type="number" th:value="${wedding_id}" hidden readonly th:name="wedding_id"> </input>
             <div class="row col-12 form-container">
                 <div class="row col-md-12 form-input-row">
                     <div class="col-md-6">
                         <label>The first person who gets married</label>
                     </div>
                     <div class="col-md-6">
-                        <input type="text" th:field="">
+                        <input type="text" th:value="${person_one}" th:name="person_one_name">
                     </div>
                 </div>
                 <div class="row col-md-12 form-input-row">
@@ -29,6 +28,7 @@
                         <label>The secound person who gets married</label>
                     </div>
                     <div class="col-md-6">
+                        <input type="text" th:value="${person_two}" th:name="person_two_name">
                     </div>
                 </div>
             </div>
