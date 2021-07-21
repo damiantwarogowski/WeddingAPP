@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello Index Page!</title>
+    <th:block th:replace="fragments :: link-styles" th:remove="tag"/>
+</head>
+<body>
+<th:block th:replace="fragments :: navigator" th:remove="tag"/>
+<main>
+    <div class="container marketing">
+        <h2>Task details</h2>
+        <div class="row col-12">
+            <div class="col-md-9"></div>
+            <a class="col-3" th:href="@{'/task/edit/' + ${task.id}}">
+                <button type="button" class="btn btn-danger col-12">Details</button>
+            </a>
+        </div>
+        <div class="row col-12 form-container" th:object="${task}">
+            <div class="row col-md-12 form-input-row">
+                <div class="col-md-6">Task:</div>
+                <div class="col-md-6" th:text="*{typeOfTask}"></div>
+            </div>
+
+            <div class="row col-md-12 form-input-row">
+                <div class="col-md-6">Date & time of the task:</div>
+                <div class="col-md-6" th:text="*{deadlineDay + ' ' + timeOfTask}"></div>
+            </div>
+
+            <div class="row col-md-12 form-input-row">
+                <div class="col-md-6">Reminder day:</div>
+                <div class="col-md-6" th:text="*{reminderDay}"></div>
+            </div>
+            <div class="row col-md-12 form-input-row">
+                <div class="col-md-6">Cost:</div>
+                <div class="col-md-6" th:text="*{costs}"></div>
+            </div>
+        </div>
+    </div>
+</main>
+<th:block th:replace="fragments :: scripts" th:remove="tag"/>
+</body>
+</html>
