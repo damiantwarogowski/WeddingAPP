@@ -1,14 +1,8 @@
 package com.sda.weddingApp.service;
 
-import com.sda.weddingApp.model.Account;
-import com.sda.weddingApp.model.TaskToDo;
-import com.sda.weddingApp.model.TypeOfTask;
-import com.sda.weddingApp.model.Wedding;
+import com.sda.weddingApp.model.*;
 import com.sda.weddingApp.model.dto.SurveyAnswers;
-import com.sda.weddingApp.repository.AccountRepository;
-import com.sda.weddingApp.repository.TaskToDoRepository;
-import com.sda.weddingApp.repository.TypeofTaskRepository;
-import com.sda.weddingApp.repository.WeddingFormRepository;
+import com.sda.weddingApp.repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -27,14 +21,19 @@ public class WeddingService {
     private final AccountRepository accountRepository;
     private final TypeofTaskRepository typeofTaskRepository;
     private final TaskToDoRepository taskToDoRepository;
+    private final CoupleRepository coupleRepository;
 
     public void createWedding(SurveyAnswers answers, Long accountId) {
         Account account = accountRepository.getById(accountId);
 
+        Couple couple = new Couple(null, "unknown", "unknown", null);
+
+        couple = coupleRepository.save(couple);
         Wedding wedding = Wedding.builder()
                 .dateOfWedding(answers.getWeddingDate())
                 .timeOfWedding(answers.getWeddingTime())
                 .timeOfWeddingParty(answers.getWeddingPartyTime())
+                .couple(couple)
                 .owner(account)
                 .build();
         wedding = weddingRepository.save(wedding);
@@ -204,13 +203,14 @@ public class WeddingService {
         log.info("Wedding edited.");
     }
 
-    public void editCouple(Wedding weddingInfo, Long personOneId, Long personTwoId) {
-        Optional<Wedding> weddingOptional = weddingRepository.findById(weddingInfo.getId());
+    public void editCouple(Long weddingId, String personOne, String personTwo) {
+        Optional<Wedding> weddingOptional = weddingRepository.findById(weddingId);
         if(weddingOptional.isPresent()) {
             Wedding wedding = weddingOptional.get();
-            wedding.setCouple(weddingInfo.getCouple());
+            wedding.getCouple().setPerson1(personOne);
+            wedding.getCouple().setPerson2(personTwo);
 
-            weddingRepository.save(wedding);
+            coupleRepository.save(wedding.getCouple());
         }
         log.info("Couple edited.");
     }

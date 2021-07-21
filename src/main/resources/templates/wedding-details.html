@@ -34,8 +34,8 @@
             </div>
             <div class="row col-md-12 form-input-row">
                 <div class="col-md-6">Couple:</div>
-                <div class="col-md-3" th:if="*{couple != null}" th:text="*{couple.getBride()}"></div>
-                <div class="col-md-3" th:if="*{couple != null}" th:text="*{couple.getGroom()}"></div>
+                <div class="col-md-3" th:if="*{couple != null}" th:text="*{couple.getPerson1()}"></div>
+                <div class="col-md-3" th:if="*{couple != null}" th:text="*{couple.getPerson2()}"></div>
             </div>
             <div class="row col-md-12 form-input-row">
                 <div class="col-md-6">Time of party:</div>
