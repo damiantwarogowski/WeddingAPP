@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Couple editor</title>
+    <th:block th:replace="fragments :: link-styles" th:remove="tag"/>
+</head>
+<body>
+<th:block th:replace="fragments :: navigator" th:remove="tag"/>
+
+<main>
+    <div class="container marketing">
+        <hr>
+        <h2>Questions about couple</h2>
+        <form th:action="@{/couple/edit/submit}" method="post" th:object="${wedding}">
+
+            <input th:field="*{id}" name="wedding" hidden readonly/>
+            <div class="row col-12 form-container">
+                <div class="row col-md-12 form-input-row">
+                    <div class="col-md-6">
+                        <label>The first person who gets married</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" th:field="">
+                    </div>
+                </div>
+                <div class="row col-md-12 form-input-row">
+                    <div class="col-md-6">
+                        <label>The secound person who gets married</label>
+                    </div>
+                    <div class="col-md-6">
+                    </div>
+                </div>
+            </div>
+            <div class="row col-12 form-container">
+                <input class="form-control btn btn-submit" type="submit">
+            </div>
+        </form>
+    </div>
+</main>
+<th:block th:replace="fragments :: scripts" th:remove="tag"/>
+</body>
+</html>
