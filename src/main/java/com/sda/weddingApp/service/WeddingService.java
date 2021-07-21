@@ -119,11 +119,34 @@ public class WeddingService {
     }
 
     public void addTaskToWedding(Long weddingId, Long typeOfTaskId, TaskToDo task, String ownTypeOfTask) {
-        TypeOfTask taskType;
+        //
+        TypeOfTask taskType = null;
+        // czy użytkownik wpisał własną nazwę taska?
         if (ownTypeOfTask == null || ownTypeOfTask.isEmpty()) {
+            // nie
             Optional<TypeOfTask> optionalTaskType = typeofTaskRepository.findById(typeOfTaskId);
             if (optionalTaskType.isPresent()) {
                 taskType = optionalTaskType.get();
+
+
+            }
+        } else{
+            Optional<TypeOfTask> optionalTaskType = typeofTaskRepository.findAll()
+                    .stream()
+                    .filter(tTask -> tTask.getName().equalsIgnoreCase(ownTypeOfTask))
+                    .findAny();
+
+            // gościu wpisał własne wejście
+            if (optionalTaskType.isPresent()) {
+                // znaleźliśmy
+                taskType = optionalTaskType.get();
+            }else{
+                // nie znaleźliśmy
+                // 1. tworzymy nowy task
+                TypeOfTask doDodania = TypeOfTask.builder().name(ownTypeOfTask).build();
+                // 2. dodajemy go do bazy
+                taskType = typeofTaskRepository.save(doDodania);
+
             }
 //            else {
 //                taskType=optionalTaskType
@@ -132,11 +155,9 @@ public class WeddingService {
 //
 //            }
         }
-
-        // jeśli powyższe (if etc.) nie znalazło task'a w bazie, to znaczy że trzeba go dodać od nowa
-        // 1. tworzymy nowy task
-        // 2. dodajemy go do bazy
-        // zwrócony obiekt (zwrócony z metody save) przypisujemy do zmiennej taskType (wyżej)
+        if( taskType == null){
+            throw new UnsupportedOperationException("Unexpected error.");
+        }
 
         Optional<Wedding> optionalWedding = weddingRepository.findById(weddingId);
         if (optionalWedding.isPresent()) {
