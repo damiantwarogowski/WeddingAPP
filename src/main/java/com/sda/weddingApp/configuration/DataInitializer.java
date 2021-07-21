@@ -2,11 +2,10 @@ package com.sda.weddingApp.configuration;
 
 import com.sda.weddingApp.model.Account;
 import com.sda.weddingApp.model.AccountRole;
-import com.sda.weddingApp.model.Person;
 import com.sda.weddingApp.model.TypeOfTask;
 import com.sda.weddingApp.repository.AccountRepository;
 import com.sda.weddingApp.repository.AccountRoleRepository;
-import com.sda.weddingApp.repository.PersonRepository;
+import com.sda.weddingApp.repository.CoupleRepository;
 import com.sda.weddingApp.repository.TypeofTaskRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationListener;
@@ -64,7 +63,7 @@ public class DataInitializer implements ApplicationListener<ContextRefreshedEven
     private final PasswordEncoder passwordEncoder;
     private final AccountRepository accountRepository;
     private final AccountRoleRepository accountRoleRepository;
-    private final PersonRepository personRepository;
+    private final CoupleRepository coupleRepository;
 
     private final TypeofTaskRepository typeofTaskRepository;
 

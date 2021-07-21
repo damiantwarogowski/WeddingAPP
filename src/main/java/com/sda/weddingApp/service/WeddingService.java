@@ -125,13 +125,13 @@ public class WeddingService {
             Optional<TypeOfTask> optionalTaskType = typeofTaskRepository.findById(typeOfTaskId);
             if (optionalTaskType.isPresent()) {
                 taskType = optionalTaskType.get();
-            } else {
-                taskType=optionalTaskType
-
-
-                taskToDoRepository.save(taskToDo);
-
             }
+//            else {
+//                taskType=optionalTaskType
+//
+//                taskToDoRepository.save(taskToDo);
+//
+//            }
         }
 
         // jeśli powyższe (if etc.) nie znalazło task'a w bazie, to znaczy że trzeba go dodać od nowa
@@ -144,7 +144,7 @@ public class WeddingService {
             Wedding wedding = optionalWedding.get();
 
             TaskToDo taskToDo = TaskToDo.builder()
-                    .typeOfTask(taskType)
+//                    .typeOfTask(taskType)
                     .deadlineDay(task.getDeadlineDay())
                     .wedding(wedding)
                     .build();
@@ -181,6 +181,17 @@ public class WeddingService {
             weddingRepository.save(wedding);
         }
         log.info("Wedding edited.");
+    }
+
+    public void editCouple(Wedding weddingInfo, Long personOneId, Long personTwoId) {
+        Optional<Wedding> weddingOptional = weddingRepository.findById(weddingInfo.getId());
+        if(weddingOptional.isPresent()) {
+            Wedding wedding = weddingOptional.get();
+            wedding.setCouple(weddingInfo.getCouple());
+
+            weddingRepository.save(wedding);
+        }
+        log.info("Couple edited.");
     }
 //
 //    public Optional<WeddingDto> update(Long id, WeddingDto weddingDto) {

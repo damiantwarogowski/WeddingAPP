@@ -4,7 +4,7 @@ import com.sda.weddingApp.exception.InvalidRegisterData;
 import com.sda.weddingApp.model.*;
 import com.sda.weddingApp.repository.AccountRepository;
 import com.sda.weddingApp.repository.AccountRoleRepository;
-import com.sda.weddingApp.repository.PersonRepository;
+import com.sda.weddingApp.repository.CoupleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -22,7 +22,7 @@ public class AccountService {
     private final AccountRepository accountRepository;
     private final AccountRoleRepository accountRoleRepository;
     private final PasswordEncoder passwordEncoder;
-    private final PersonRepository personRepository;
+    private final CoupleRepository coupleRepository;
 
     public List<Account> getAccountList() {
         return accountRepository.findAll();
