@@ -34,9 +34,6 @@ public class Account implements UserDetails {
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<AccountRole> roles;
 
-    @OneToOne
-    private Person person;
-
     @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
     @ToString.Exclude
     @JsonBackReference

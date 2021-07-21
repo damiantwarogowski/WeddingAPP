@@ -38,18 +38,6 @@ public class AccountService {
             throw new InvalidRegisterData("Account with given username already exists!");
         }
 
-        Optional<Person> personOptional = personRepository.findByEmail(request.getEmail());
-        if (personOptional.isPresent()) {
-            throw new InvalidRegisterData("Email with given email already exists!");
-        }
-
-            Person person = Person.builder()
-                    .firstName(request.getFirstName())
-                    .lastName(request.getLastName())
-                    .email(request.getEmail())
-                    .build();
-            personRepository.save(person);
-
 
         Account account = Account.builder()
                 .username(request.getUsername())
@@ -58,7 +46,6 @@ public class AccountService {
                 .accountNonLocked(true)
                 .credentialsNonExpired(true)
                 .enabled(true)
-                .person(person)
                 .build();
         accountRepository.save(account);
         return true;

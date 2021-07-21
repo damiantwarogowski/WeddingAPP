@@ -25,13 +25,6 @@ public class AuthorizationService implements UserDetailsService {
 
             return optionalAccount.get();
         }
-        Optional<Person> optionalPerson = personRepository.findByEmail(username);
-        if (optionalPerson.isPresent()) {
-            Person person = optionalPerson.get();
-            return person.getAccount();
-        }
         throw new UsernameNotFoundException("Can't find " + username);
-
-
     }
 }

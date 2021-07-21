@@ -73,8 +73,8 @@ public class DataInitializer implements ApplicationListener<ContextRefreshedEven
             addRole(role);
         }
 
-        addUser(ADMIN_USERNAME, ADMIN_PASSWORD, "admin@admin.pl", AVAILABLE_ROLES);
-        addUser("user", "resu", "user@user.pl", new String[]{ROLE_USER});
+        addUser(ADMIN_USERNAME, ADMIN_PASSWORD, AVAILABLE_ROLES);
+        addUser("user", "resu",  new String[]{ROLE_USER});
 
         for (String task : DEFAULT_TYPES_OF_TASKS) {
             addTask(task);
@@ -92,15 +92,9 @@ public class DataInitializer implements ApplicationListener<ContextRefreshedEven
         }
     }
 
-    private void addUser(String username, String password, String email, String[] roles) {
+    private void addUser(String username, String password, String[] roles) {
         Optional<Account> optionalAccount = accountRepository.findByUsername(username);
         if (!optionalAccount.isPresent()) {
-            Person person = Person.builder()
-                    .firstName(username)
-                    .lastName("admin")
-                    .email(email)
-                    .build();
-            personRepository.save(person);
 
             Account account = Account.builder()
                     .accountNonExpired(true)
@@ -109,7 +103,6 @@ public class DataInitializer implements ApplicationListener<ContextRefreshedEven
                     .enabled(true)
                     .username(username)
                     .password(passwordEncoder.encode(password))
-                    .person(person)
                     .build();
 
             Set<AccountRole> rolesSet = new HashSet<>();

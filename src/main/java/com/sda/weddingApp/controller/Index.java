@@ -21,7 +21,6 @@ import java.security.Principal;
 @RequiredArgsConstructor
 public class Index {
     private final AccountService accountService;
-    private final PersonService personService;
 
     @GetMapping
     public String getIndex(){
@@ -67,8 +66,6 @@ public class Index {
             if(usernamePasswordAuthenticationToken.getPrincipal() instanceof Account) {
                 Account account = (Account) usernamePasswordAuthenticationToken.getPrincipal();
                 model.addAttribute("uzytkownik", account);
-
-                model.addAttribute("personList", personService.personList(account));
             }
         }
         return "authenticated";
