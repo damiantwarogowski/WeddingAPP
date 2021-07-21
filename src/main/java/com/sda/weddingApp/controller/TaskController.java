@@ -1,6 +1,7 @@
 package com.sda.weddingApp.controller;
 
 import com.sda.weddingApp.model.TaskToDo;
+import com.sda.weddingApp.model.TypeOfTask;
 import com.sda.weddingApp.service.AccountService;
 import com.sda.weddingApp.service.TypeOfTaskService;
 import com.sda.weddingApp.service.WeddingService;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.Optional;
 
 @Slf4j
 @Controller
@@ -40,5 +43,26 @@ public class TaskController {
         log.info("Task to save:" + taskTodo);
         weddingService.addTaskToWedding(weddingId, type_of_task_id, taskTodo, ownTypeOfTask);
         return "redirect:/wedding/details/"+weddingId;
+    }
+
+    @GetMapping("/{idTask}")
+    public String getAllTasks(Model model, @PathVariable Long idTask) {
+        Optional<TaskToDo> taskOptional = typeOfTaskService.findTask(idTask);
+        if (taskOptional.isPresent()) {
+            model.addAttribute("task", taskOptional.get());
+            return "task-details";
+        }
+        return "redirect:/wedding/weddings";
+    }
+
+    @GetMapping("/edit/{idTaskEdit}")
+    public String editTask(Model model, @PathVariable(name="idTaskEdit") Long id) {
+        Optional<TypeOfTask> taskToEdit = typeOfTaskService.findTypeOfTask(id);
+        if (taskToEdit.isPresent()) {
+            model.addAttribute("task_edit", taskToEdit.get());
+            log.info("Task to edit: " + taskToEdit);
+            return "task-edit";
+        }
+        return "redirect:/task";
     }
 }

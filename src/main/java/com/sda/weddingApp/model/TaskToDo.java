@@ -6,6 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Set;
 
 
@@ -25,6 +26,9 @@ public class TaskToDo {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate deadlineDay;
+
+    @DateTimeFormat(pattern = "HH:mm")
+    private LocalTime timeOfTask;
 
     @ManyToOne()
     @ToString.Exclude
