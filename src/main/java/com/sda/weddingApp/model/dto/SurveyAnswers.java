@@ -22,6 +22,9 @@ public class SurveyAnswers {
     @DateTimeFormat(pattern = "HH:mm")
     private LocalTime weddingPartyTime;
 
+    private String person1;
+    private String person2;
+
     private boolean taskDJ;
     private boolean taskBand;
     private boolean taskVenue;

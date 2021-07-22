@@ -27,9 +27,10 @@ public class WeddingService {
     public void createWedding(SurveyAnswers answers, Long accountId) {
         Account account = accountRepository.getById(accountId);
 
-        Couple couple = new Couple(null, "unknown", "unknown", null);
-
+        Couple couple = new Couple(null, answers.getPerson1(), answers.getPerson2(), null);
         couple = coupleRepository.save(couple);
+
+
         Wedding wedding = Wedding.builder()
                 .dateOfWedding(answers.getWeddingDate())
                 .timeOfWedding(answers.getWeddingTime())
@@ -38,7 +39,8 @@ public class WeddingService {
                 .owner(account)
                 .build();
         wedding = weddingRepository.save(wedding);
-        log.info("Wedding zapisany.");
+        log.info("Wedding added.");
+
 
         if (answers.isTaskBand()) {
             addTaskToWedding(wedding, TASK_BAND, answers.getWeddingDate());
@@ -194,10 +196,13 @@ public class WeddingService {
             wedding.setDateOfWedding(weddingInfo.getDateOfWedding());
             wedding.setTimeOfWedding(weddingInfo.getTimeOfWedding());
             wedding.setTimeOfWeddingParty(weddingInfo.getTimeOfWeddingParty());
+            wedding.setCouple(weddingInfo.getCouple());
             weddingRepository.save(wedding);
         }
         log.info("Wedding edited.");
     }
+
+
 
     public void editCouple(Long weddingId, String personOne, String personTwo) {
         Optional<Wedding> weddingOptional = weddingRepository.findById(weddingId);
