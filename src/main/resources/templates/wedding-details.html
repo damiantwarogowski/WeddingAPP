@@ -64,7 +64,7 @@
                     <div class="col-2" th:text="${task.deadlineDay}"></div>
                     <div class="col-3" th:text="${task.typeOfTask.name}"></div>
                     <div class="col-3">
-                        <a class="col-6" th:href="@{'/task/details/' + ${task.id}}">
+                        <a class="col-6" th:href="@{'/tasks/' + ${task.id}}">
                             <button type="button" class="btn btn-danger col-12">Details</button>
                         </a>
                     </div>

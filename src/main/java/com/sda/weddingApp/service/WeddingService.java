@@ -160,7 +160,7 @@ public class WeddingService {
             Wedding wedding = optionalWedding.get();
 
             TaskToDo taskToDo = TaskToDo.builder()
-//                    .typeOfTask(taskType)
+                    .typeOfTask(taskType)
                     .deadlineDay(task.getDeadlineDay())
                     .wedding(wedding)
                     .build();
