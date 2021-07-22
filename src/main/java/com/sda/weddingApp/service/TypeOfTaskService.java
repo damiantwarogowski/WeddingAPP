@@ -22,10 +22,13 @@ public class TypeOfTaskService {
         return typeofTaskRepository.findAll();
     }
 
-    public Optional<TypeOfTask> findTypeOfTask(Long id){
+    public Optional<TypeOfTask> findTypeOfTask(Long id) {
         return typeofTaskRepository.findById(id);
     }
-    public Optional<TaskToDo> findTask(Long id){
+
+    public Optional<TaskToDo> findTask(Long id) {
         return taskToDoRepository.findById(id);
     }
+
+
 }

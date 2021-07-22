@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -148,12 +149,7 @@ public class WeddingService {
                 taskType = typeofTaskRepository.save(doDodania);
 
             }
-//            else {
-//                taskType=optionalTaskType
-//
-//                taskToDoRepository.save(taskToDo);
-//
-//            }
+
         }
         if( taskType == null){
             throw new UnsupportedOperationException("Unexpected error.");
@@ -214,16 +210,18 @@ public class WeddingService {
         }
         log.info("Couple edited.");
     }
-//
-//    public Optional<WeddingDto> update(Long id, WeddingDto weddingDto) {
-//        Optional<Wedding> weddingOptional = getWeddingWithId(id);
-//        if(weddingOptional.isPresent()){
-//            Wedding wedding = weddingOptional.get();
-//
-//            weddingMapper.update(weddingDto, wedding);
-//            return Optional.of(weddingMapper.getDtoFromWedding(weddingRepository.save(wedding)));
-//        }
-//        return Optional.empty();
-//    }
 
+    public void taskEdit(Long weddingId, Long taskId, LocalDate reminderDay, LocalDate deadlineDay, LocalTime timeOfTask, Integer costs) {
+        Optional<TaskToDo> taskEdit = taskToDoRepository.findById(taskId);
+        if(taskEdit.isPresent()) {
+            TaskToDo taskToDo = taskEdit.get();
+            taskToDo.getReminderDay();
+            taskToDo.getDeadlineDay();
+            taskToDo.getTimeOfTask();
+            taskToDo.getCosts();
+
+            taskToDoRepository.save(taskToDo);
+        }
+        log.info("Task edited.");
+    }
 }
