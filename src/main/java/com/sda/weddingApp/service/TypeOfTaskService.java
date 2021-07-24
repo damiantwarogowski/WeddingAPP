@@ -29,6 +29,4 @@ public class TypeOfTaskService {
     public Optional<TaskToDo> findTask(Long id) {
         return taskToDoRepository.findById(id);
     }
-
-
 }

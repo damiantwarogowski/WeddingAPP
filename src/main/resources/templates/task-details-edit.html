@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Wedding Editor</title>
+    <title>Task Editor</title>
     <th:block th:replace="fragments :: link-styles" th:remove="tag"/>
 </head>
 <body>
@@ -11,28 +11,36 @@
 <main>
     <div class="container marketing">
         <hr>
-        <h2>Questions about the wedding to edit</h2>
-        <form th:action="@{/wedding/edit/submit}" method="post" th:object="${wedding_edit}">
+        <h2>Questions about task to edit</h2>
+        <form th:action="@{/tasks/edit/submit}" method="post" th:object="${task_edit}">
 
             <input type="number" th:field="*{id}" hidden readonly>
             <div class="row col-12 form-container">
                 <div class="row col-md-12 form-input-row">
+                    <div class="row col-md-12 form-input-row">
+                        <div class="col-md-6">
+                            <label>Task to do</label>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="col-md-6" th:text="*{typeOfTask}"></div>
+                        </div>
+                    </div>
                     <div class="col-md-6">
-                        <label>1: When are You planning to get married?</label>
+                        <label>1: When are You planning to finish this task?</label>
                     </div>
                     <div class="col-md-3">
-                        <input type="date" th:min="${today}" th:field="*{dateOfWedding}"/>
+                        <input type="date" th:min="${today}" th:field="*{deadlineDay}"/>
                     </div>
                     <div class="col-md-3">
-                        <input type="time" th:field="*{timeOfWedding}"/>
+                        <input type="time" th:field="*{timeOfTask}"/>
                     </div>
                 </div>
                 <div class="row col-md-12 form-input-row">
                     <div class="col-md-6">
-                        <label>2: What time are You planning to have a wedding party?</label>
+                        <label>2: When do you want a reminder ?</label>
                     </div>
                     <div class="col-md-6">
-                        <input type="time" th:field="*{timeOfWeddingParty}"/>
+                        <input type="date" th:field="*{reminderDay}"/>
                     </div>
                 </div>
             </div>

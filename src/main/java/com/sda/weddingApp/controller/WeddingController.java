@@ -66,18 +66,18 @@ public class WeddingController {
         return "redirect:/wedding";
     }
 
+    @PostMapping("/edit/submit")
+    public String submitSurvey(Wedding wedding) {
+        weddingService.editWedding(wedding);
+        return "redirect:/";
+    }
+
     @GetMapping("/add")
     public String addWedding(Model model) {
         Wedding wedding = new Wedding();
 
         model.addAttribute("new_wedding", wedding);
         return "wedding-add";
-    }
-
-    @PostMapping("/edit/submit")
-    public String submitSurvey(Wedding wedding) {
-        weddingService.editWedding(wedding);
-        return "redirect:/";
     }
 
     @GetMapping("")
