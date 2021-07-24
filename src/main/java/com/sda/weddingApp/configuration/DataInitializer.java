@@ -2,11 +2,9 @@ package com.sda.weddingApp.configuration;
 
 import com.sda.weddingApp.model.Account;
 import com.sda.weddingApp.model.AccountRole;
+import com.sda.weddingApp.model.TypeOfCost;
 import com.sda.weddingApp.model.TypeOfTask;
-import com.sda.weddingApp.repository.AccountRepository;
-import com.sda.weddingApp.repository.AccountRoleRepository;
-import com.sda.weddingApp.repository.CoupleRepository;
-import com.sda.weddingApp.repository.TypeofTaskRepository;
+import com.sda.weddingApp.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -17,6 +15,8 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+import static com.sda.weddingApp.configuration.CostsNames.BAIL_COST;
+import static com.sda.weddingApp.configuration.CostsNames.TOTAL_COST;
 import static com.sda.weddingApp.configuration.TaskNames.*;
 
 /**
@@ -66,6 +66,7 @@ public class DataInitializer implements ApplicationListener<ContextRefreshedEven
     private final CoupleRepository coupleRepository;
 
     private final TypeofTaskRepository typeofTaskRepository;
+    private  final TypeofCostRepository typeofCostRepository;
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
@@ -79,6 +80,9 @@ public class DataInitializer implements ApplicationListener<ContextRefreshedEven
         for (String task : DEFAULT_TYPES_OF_TASKS) {
             addTask(task);
         }
+        for (String cost : DEFAULT_TYPES_OF_COSTS) {
+            addCost(cost);
+        }
     }
 
     private void addTask(String task) {
@@ -89,6 +93,17 @@ public class DataInitializer implements ApplicationListener<ContextRefreshedEven
                     .build();
 
             typeofTaskRepository.save(typeOfTask);
+        }
+    }
+
+    private void addCost(String cost) {
+        Optional<TypeOfCost> optionalTypeOfCost = typeofCostRepository.findByName(cost);
+        if (!optionalTypeOfCost.isPresent()) {
+            TypeOfCost typeOfCost = TypeOfCost.builder()
+                    .name(cost)
+                    .build();
+
+            typeofCostRepository.save(typeOfCost);
         }
     }
 
@@ -130,4 +145,9 @@ public class DataInitializer implements ApplicationListener<ContextRefreshedEven
             accountRoleRepository.save(accountRole);
         }
     }
+
+    private final static String[] DEFAULT_TYPES_OF_COSTS = {
+            BAIL_COST,
+            TOTAL_COST,
+    };
 }

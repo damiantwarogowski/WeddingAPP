@@ -12,6 +12,7 @@ import java.util.Set;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class TaskCost {
 
     @Id
@@ -36,4 +37,9 @@ public class TaskCost {
 
     @ManyToOne()
     private TaskToDo task;
+
+    @ManyToOne()
+    @ToString.Exclude
+    @JsonBackReference
+    private TypeOfCost typeOfCost;
 }
