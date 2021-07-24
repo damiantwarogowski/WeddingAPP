@@ -10,7 +10,12 @@
 <main>
     <div class="container marketing">
         <h2>Task details</h2>
-
+        <div class="row col-12">
+            <div class="col-md-10"></div>
+            <a class="col-2" th:href="@{'/tasks/edit/' + ${task.id}}">
+                <button type="button" class="btn btn-warning col-12">Edit task</button>
+            </a>
+        </div>
         <div class="row col-12 form-container" th:object="${task}">
             <div class="row col-md-12 form-input-row">
                 <div class="col-md-6">Task:</div>

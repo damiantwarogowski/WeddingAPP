@@ -8,7 +8,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -202,8 +201,6 @@ public class WeddingService {
         log.info("Wedding edited.");
     }
 
-
-
     public void editCouple(Long weddingId, String personOne, String personTwo) {
         Optional<Wedding> weddingOptional = weddingRepository.findById(weddingId);
         if(weddingOptional.isPresent()) {
@@ -216,15 +213,13 @@ public class WeddingService {
         log.info("Couple edited.");
     }
 
-    public void taskEdit(Long weddingId, Long taskId, LocalDate reminderDay, LocalDate deadlineDay, LocalTime timeOfTask, Integer costs) {
-        Optional<TaskToDo> taskEdit = taskToDoRepository.findById(taskId);
+    public void editTask(TaskToDo taskToDoInfo) {
+        Optional<TaskToDo> taskEdit = taskToDoRepository.findById(taskToDoInfo.getId());
         if(taskEdit.isPresent()) {
             TaskToDo taskToDo = taskEdit.get();
-            taskToDo.getReminderDay();
-            taskToDo.getDeadlineDay();
-            taskToDo.getTimeOfTask();
-            taskToDo.getCosts();
-
+            taskToDo.setReminderDay(taskToDoInfo.getReminderDay());
+            taskToDo.setDeadlineDay(taskToDoInfo.getDeadlineDay());
+            taskToDo.setTimeOfTask(taskToDoInfo.getTimeOfTask());
             taskToDoRepository.save(taskToDo);
         }
         log.info("Task edited.");
