@@ -11,11 +11,16 @@
     <div class="container marketing">
         <h2>Task details</h2>
         <div class="row col-12">
+
             <div class="col-md-10"></div>
+
+            <div class="col-md-7"></div>
+
             <a class="col-2" th:href="@{'/tasks/edit/' + ${task.id}}">
                 <button type="button" class="btn btn-warning col-12">Edit task</button>
             </a>
         </div>
+
         <div class="row col-12 form-container" th:object="${task}">
             <div class="row col-md-12 form-input-row">
                 <div class="col-md-6">Task:</div>
@@ -32,25 +37,37 @@
                 <div class="col-md-6" th:text="*{reminderDay}"></div>
             </div>
         </div>
-        <!--        <h2>Task Costs:</h2>-->
-        <!--        <div class="row col-12 form-container" th:object="${wedding}">-->
-        <!--            <div class="row col-md-12 form-input-row">-->
-        <!--                <div class="col-md-6">:</div>-->
-        <!--                <div class="col-md-6" th:text="*{getOwner().getUsername()}"></div>-->
-        <!--            </div>-->
-        <!--            <div class="row col-md-12 form-input-row">-->
-        <!--                <div class="col-md-6">Date & time:</div>-->
-        <!--                <div class="col-md-6" th:text="*{dateOfWedding + ' ' + timeOfWedding}"></div>-->
-        <!--            </div>-->
-        <!--            <div class="row col-md-12 form-input-row">-->
-        <!--                <div class="col-md-6">Couple:</div>-->
-        <!--                <div class="col-md-3" th:if="*{couple != null}" th:text="*{couple.getBride()}"></div>-->
-        <!--                <div class="col-md-3" th:if="*{couple != null}" th:text="*{couple.getGroom()}"></div>-->
-        <!--            </div>-->
-        <!--            <div class="row col-md-12 form-input-row">-->
-        <!--                <div class="col-md-6">Time of party:</div>-->
-        <!--                <div class="col-md-6" th:text="*{timeOfWeddingParty}"></div>-->
-        <!--            </div>-->
+        <h2>Costs of task</h2>
+        <div class="row col-12">
+            <div class="col-md-9"></div>
+            <a class="col-3" th:href="@{'/cost/' + ${task.id}}">
+                <button type="button" class="btn btn-danger col-12">Add cost</button>
+            </a>
+        </div>
+        <div class="row col-12 form-container">
+            <div class="row col-md-12">
+                <div class="row col-md-12 list-header-row">
+                    <div class="col-2">Id</div>
+                    <div class="col-2">Total cost</div>
+                    <div class="col-2">Bail cost</div>
+                    <div class="col-2">Total cost deadline</div>
+                    <div class="col-2">Bail cost deadline</div>
+                    <div class="col-2"></div>
+                </div>
+                <div th:each="cost : ${task.getCosts()}" class="row col-md-12 list-data-row">
+                    <div class="col-2" th:text="${cost.id}"></div>
+                    <div class="col-2" th:text="${cost.totalCost}"></div>
+                    <div class="col-2" th:text="${cost.bailCost}"></div>
+                    <div class="col-2" th:text="${cost.totalCostDeadline}"></div>
+                    <div class="col-2" th:text="${cost.bailCostDeadline}"></div>
+                    <div class="col-2">
+<!--                        <a class="col-6" th:href="@{'/cost/' + ${task.id}}">-->
+<!--                            <button type="button" class="btn btn-danger col-12">Details</button>-->
+<!--                        </a>-->
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </main>
 <th:block th:replace="fragments :: scripts" th:remove="tag"/>
