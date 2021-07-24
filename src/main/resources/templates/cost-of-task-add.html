@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add cost of task</title>
+    <th:block th:replace="fragments :: link-styles" th:remove="tag"/>
+</head>
+<body>
+<th:block th:replace="fragments :: navigator" th:remove="tag"/>
+
+<main>
+    <div class="container marketing">
+        <hr>
+        <h2>Add cost to:</h2>
+        <form th:action="@{/cost/add/}" method="post" th:object="${new_cost}">
+            <input type="number" readonly hidden th:value="${taskId}" name="taskId">
+            <div class="row col-12 form-container">
+                <div class="row col-md-12 form-input-row">
+                </div>
+                <div class="row col-md-12 form-input-row">
+                    <div class="col-md-6">
+                        <label>Bail cost:</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" name="bailCost"/>
+                    </div>
+                </div>
+                <div class="row col-md-12 form-input-row">
+                    <div class="col-md-6">
+                        <label>Bail cost deadline:</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="date" th:field="*{bailCostDeadline}"/>
+                    </div>
+                </div>
+                <div class="row col-md-12 form-input-row">
+                    <div class="col-md-6">
+                        <label>Total cost:</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" name="bailCost"/>
+                    </div>
+                </div>
+                <div class="row col-md-12 form-input-row">
+                    <div class="col-md-6">
+                        <label>Total cost deadline:</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="date" th:field="*{totalCostDeadline}"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row col-12 form-container">
+                <input class="form-control btn btn-submit" type="submit">
+            </div>
+        </form>
+    </div>
+</main>
+<th:block th:replace="fragments :: scripts" th:remove="tag"/>
+</body>
+</html>
