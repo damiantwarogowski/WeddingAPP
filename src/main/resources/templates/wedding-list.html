@@ -19,8 +19,9 @@
                 <div class="col-2"></div>
                 <div th:each="wedding : ${weddingsList}" class="row col-md-12 list-data-row">
                     <div class="col-2" th:text="${wedding.getId()}"></div>
-                    <div class="col-3" th:text="${wedding.getDateOfWedding()}"></div>
-                    <div class="col-3" th:text="${wedding.getTimeOfWedding()}"></div>
+                    <div class="col-2" th:text="${wedding.getDateOfWedding()}"></div>
+                    <div class="col-2" th:text="${wedding.getTimeOfWedding()}"></div>
+                    <div class="col-2" th:text="${wedding.getTimeOfWedding()}"></div>
 
                     <div class="col-2 row">
                         <a class="col-8" th:href="@{'/wedding/details/' + ${wedding.getId()}}">

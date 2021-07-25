@@ -120,7 +120,7 @@ public class WeddingService {
         }
     }
 
-    public void addTaskToWedding(Long weddingId, Long typeOfTaskId, TaskToDo task, String ownTypeOfTask) {
+    public void addTaskToWedding(Long weddingId, Long typeOfTaskId, TaskToDo task, String ownTypeOfTask, Double plannedCost) {
         //
         TypeOfTask taskType = null;
         // czy użytkownik wpisał własną nazwę taska?
@@ -145,7 +145,9 @@ public class WeddingService {
             }else{
                 // nie znaleźliśmy
                 // 1. tworzymy nowy task
-                TypeOfTask doDodania = TypeOfTask.builder().name(ownTypeOfTask).build();
+                TypeOfTask doDodania = TypeOfTask.builder()
+                        .name(ownTypeOfTask)
+                        .build();
                 // 2. dodajemy go do bazy
                 taskType = typeofTaskRepository.save(doDodania);
 
@@ -220,6 +222,7 @@ public class WeddingService {
             taskToDo.setReminderDay(taskToDoInfo.getReminderDay());
             taskToDo.setDeadlineDay(taskToDoInfo.getDeadlineDay());
             taskToDo.setTimeOfTask(taskToDoInfo.getTimeOfTask());
+            taskToDo.setPlannedCost(taskToDoInfo.getPlannedCost());
             taskToDoRepository.save(taskToDo);
         }
         log.info("Task edited.");

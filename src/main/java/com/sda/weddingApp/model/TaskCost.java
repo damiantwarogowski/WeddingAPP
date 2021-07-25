@@ -19,9 +19,9 @@ public class TaskCost {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private double totalCost;
+    private Double totalCost;
 
-    private double bailCost;
+    private Double bailCost;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate totalCostDeadline;
