@@ -22,7 +22,7 @@
                             <label>Task to do</label>
                         </div>
                         <div class="col-md-6">
-                            <div class="col-md-6" th:text="*{typeOfTask}"></div>
+                            <div class="col-md-6" th:text="*{typeOfTask.name}"></div>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -41,6 +41,15 @@
                     </div>
                     <div class="col-md-6">
                         <input type="date" th:field="*{reminderDay}"/>
+                    </div>
+                </div>
+
+                <div class="row col-md-12 form-input-row">
+                    <div class="col-md-6">
+                        <label>3: Planned Cost?</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="number" th:field="*{plannedCost}"/>
                     </div>
                 </div>
             </div>

@@ -30,7 +30,7 @@ public class CostService {
         return costRepository.findById(id);
     }
 
-    public void addCostToTask(Long taskId, double bailCost,LocalDate bailCostDeadline, double totalCost,LocalDate totalCostDeadline ) {
+    public void addCostToTask(Long taskId, Double bailCost,LocalDate bailCostDeadline, Double totalCost,LocalDate totalCostDeadline ) {
         Optional<TypeOfCost> optionalTypeOfCost = typeofCostRepository.findById(taskId);
         if (optionalTypeOfCost.isPresent()) {
             TypeOfCost typeOfCost= optionalTypeOfCost.get();
@@ -45,6 +45,7 @@ public class CostService {
 
             costRepository.save(taskCost);
         }
+        log.info("Cost added.");
     }
 //    public void addCostTOTask(Long weddingId, Long typeOfCostId, TaskCost taskCost,  double bailCost,LocalDate bailCostDeadline, double totalCost,LocalDate totalCostDeadline) {
 //        //
