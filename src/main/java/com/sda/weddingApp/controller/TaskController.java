@@ -1,6 +1,7 @@
 package com.sda.weddingApp.controller;
 
 import com.sda.weddingApp.model.TaskToDo;
+import com.sda.weddingApp.model.Wedding;
 import com.sda.weddingApp.service.AccountService;
 import com.sda.weddingApp.service.TypeOfTaskService;
 import com.sda.weddingApp.service.WeddingService;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
@@ -44,8 +44,9 @@ public class TaskController {
     @PostMapping("/add")
     public String addTask(TaskToDo taskTodo, Long weddingId, Long type_of_task_id, String ownTypeOfTask, Double plannedCost) {
         log.info("Task to save:" + taskTodo);
+
         weddingService.addTaskToWedding(weddingId, type_of_task_id, taskTodo, ownTypeOfTask, plannedCost);
-        return "redirect:/wedding/details/"+weddingId;
+        return "redirect:/wedding/details/" + weddingId;
     }
 
     @GetMapping("/{idTask}")
@@ -59,7 +60,7 @@ public class TaskController {
     }
 
     @GetMapping("/edit/{taskId}")
-    public String editTask(Model model, @PathVariable(name="taskId") Long id) {
+    public String editTask(Model model, @PathVariable(name = "taskId") Long id) {
         Optional<TaskToDo> taskToEdit = typeOfTaskService.findTask(id);
         if (taskToEdit.isPresent()) {
             model.addAttribute("task_edit", taskToEdit.get());
@@ -75,10 +76,15 @@ public class TaskController {
         return "redirect:/tasks/"+taskToDo.getId();
     }
 
-
     @GetMapping("")
     public String getSurveyPage(Model model) {
         model.addAttribute("today", LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         return "task-details-edit";
+    }
+
+    @GetMapping("/remove/{id}")
+    public String removeTask(@PathVariable(name = "id") Long identificatory, Wedding wedding) {
+        weddingService.removeTask(identificatory);
+        return "redirect:/wedding/details/" + wedding.getId();
     }
 }

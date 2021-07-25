@@ -177,11 +177,6 @@ public class WeddingService {
     }
 
     public void removeWedding(Long id) {
-//        Optional<Wedding> weddingOptional = getWeddingWithId(id);
-//        if (weddingOptional.isPresent()) {
-//            Wedding wedding = weddingOptional.get();
-//
-//        }
         weddingRepository.deleteById(id);
     }
 
@@ -226,5 +221,12 @@ public class WeddingService {
             taskToDoRepository.save(taskToDo);
         }
         log.info("Task edited.");
+    }
+//    public List<TaskToDo> getAll() {
+//        return taskToDoRepository.findAll();
+//    }
+    public void removeTask(Long id) {
+        taskToDoRepository.deleteById(id);
+        log.info("Task removed.");
     }
 }
