@@ -1,6 +1,5 @@
 package com.sda.weddingApp.controller;
 
-import com.sda.weddingApp.model.Account;
 import com.sda.weddingApp.model.Wedding;
 import com.sda.weddingApp.service.AccountService;
 import com.sda.weddingApp.service.WeddingService;
@@ -8,13 +7,15 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Slf4j
 @Controller
@@ -47,13 +48,6 @@ public class WeddingController {
         weddingService.removeWedding(identificatory);
         return "redirect:/wedding/weddings";
     }
-
-//    @GetMapping("/remove")
-//    public String removeWedding(Long weddingId, Long weddingId){
-//        weddingService.removeWedding(weddingId);
-//
-//        // po tym jak usuniemy studenta wracamy na stronę z listą (lub wrócimy do miejsca które nas redirectowało)
-//        return "redirect:/wedding/details?weddingId="+ weddingId;
 
     @GetMapping("/edit/{identif}")
     public String editWedding(Model model, @PathVariable(name="identif") Long id) {
