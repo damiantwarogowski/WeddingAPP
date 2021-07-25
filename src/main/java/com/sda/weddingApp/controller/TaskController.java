@@ -35,15 +35,17 @@ public class TaskController {
         // dla użytkownika wysyłam obiekt studenta który ma być wypełniony w formularzu
         model.addAttribute("new_task", taskToDo);
         model.addAttribute("weddingId", weddingId);
+        model.addAttribute("plannedCost",taskToDo.getPlannedCost());
         model.addAttribute("all_types_of_tasks", typeOfTaskService.findAll());
         return "wedding-task-add";
     }
 
     // aby móc dodać rekord do bazy
     @PostMapping("/add")
-    public String addTask(TaskToDo taskTodo, Long weddingId, Long type_of_task_id, String ownTypeOfTask) {
+    public String addTask(TaskToDo taskTodo, Long weddingId, Long type_of_task_id, String ownTypeOfTask, Double plannedCost) {
         log.info("Task to save:" + taskTodo);
-        weddingService.addTaskToWedding(weddingId, type_of_task_id, taskTodo, ownTypeOfTask);
+
+        weddingService.addTaskToWedding(weddingId, type_of_task_id, taskTodo, ownTypeOfTask, plannedCost);
         return "redirect:/wedding/details/" + weddingId;
     }
 
@@ -71,7 +73,7 @@ public class TaskController {
     @PostMapping("/edit/submit")
     public String editTask(TaskToDo taskToDo) {
         weddingService.editTask(taskToDo);
-        return "redirect:/wedding/details/";
+        return "redirect:/tasks/"+taskToDo.getId();
     }
 
     @GetMapping("")

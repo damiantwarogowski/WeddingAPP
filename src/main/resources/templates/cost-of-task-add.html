@@ -11,7 +11,8 @@
 <main>
     <div class="container marketing">
         <hr>
-        <h2>Add cost to:</h2>
+        <h2>Add cost to  // th:text="${task.typeOfTask.name}": </h2>
+
         <form th:action="@{/cost/add/}" method="post" th:object="${new_cost}">
             <input type="number" readonly hidden th:value="${taskId}" name="taskId">
             <div class="row col-12 form-container">
@@ -30,7 +31,7 @@
                         <label>Bail cost deadline:</label>
                     </div>
                     <div class="col-md-6">
-                        <input type="date" th:field="*{bailCostDeadline}"/>
+                        <input type="date" name="bailCostDeadline" th:min="${today}"  th:field="*{bailCostDeadline}"/>
                     </div>
                 </div>
                 <div class="row col-md-12 form-input-row">
@@ -38,7 +39,7 @@
                         <label>Total cost:</label>
                     </div>
                     <div class="col-md-6">
-                        <input type="text" name="bailCost"/>
+                        <input type="text" name="totalCost"/>
                     </div>
                 </div>
                 <div class="row col-md-12 form-input-row">
@@ -46,7 +47,7 @@
                         <label>Total cost deadline:</label>
                     </div>
                     <div class="col-md-6">
-                        <input type="date" th:field="*{totalCostDeadline}"/>
+                        <input type="date" name="totalCostDeadline" th:min="${today}"  th:field="*{totalCostDeadline}"/>
                     </div>
                 </div>
             </div>

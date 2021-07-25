@@ -30,6 +30,8 @@ public class TaskToDo {
     @DateTimeFormat(pattern = "HH:mm")
     private LocalTime timeOfTask;
 
+    private Double plannedCost;
+
     @ManyToOne()
     @ToString.Exclude
     @JsonBackReference
@@ -45,4 +47,15 @@ public class TaskToDo {
     @JsonBackReference
     @EqualsAndHashCode.Exclude
     private Set<TaskCost> costs;
+
+    private Double allCosts;
+
+//    public Double sumAllCosts (){
+//        for (int i = 0; i <= costs.size() ; i++) {
+//            allCosts += costs.
+//        }
+//
+//    }
 }
+
+

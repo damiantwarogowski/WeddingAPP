@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>Hello Index Page!</title>
+    <title>Task details</title>
     <th:block th:replace="fragments :: link-styles" th:remove="tag"/>
 </head>
 <body>
@@ -22,7 +22,7 @@
         <div class="row col-12 form-container" th:object="${task}">
             <div class="row col-md-12 form-input-row">
                 <div class="col-md-6">Task:</div>
-                <div class="col-md-6" th:text="*{typeOfTask}"></div>
+                <div class="col-md-6" th:text="*{typeOfTask.name}"></div>
             </div>
 
             <div class="row col-md-12 form-input-row">
@@ -34,6 +34,12 @@
                 <div class="col-md-6">Reminder day:</div>
                 <div class="col-md-6" th:text="*{reminderDay}"></div>
             </div>
+
+            <div class="row col-md-12 form-input-row">
+                <div class="col-md-6">Planned cost:</div>
+                <div class="col-md-6" th:text="*{plannedCost}"></div>
+            </div>
+
         </div>
         <h2>Costs of task</h2>
         <div class="row col-12">
