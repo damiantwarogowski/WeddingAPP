@@ -257,6 +257,12 @@ public class WeddingService {
         }
         log.info("Cost added.");
     }
+//    public void removeCost(Long id) {
+//        costRepository.deleteById(id);
+//        log.info("Cost removed.");
+//    }
+
+
 
 //    public Double getAllCosts() {
 //        costRepository.getAllCosts(getWeddingWithId());
