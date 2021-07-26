@@ -22,6 +22,8 @@ public class WeddingService {
     private final TypeofTaskRepository typeofTaskRepository;
     private final TaskToDoRepository taskToDoRepository;
     private final CoupleRepository coupleRepository;
+    private final CostRepository costRepository;
+    private final TypeofCostRepository typeofCostRepository;
 
     public void createWedding(SurveyAnswers answers, Long accountId) {
         Account account = accountRepository.getById(accountId);
@@ -192,7 +194,7 @@ public class WeddingService {
             wedding.setDateOfWedding(weddingInfo.getDateOfWedding());
             wedding.setTimeOfWedding(weddingInfo.getTimeOfWedding());
             wedding.setTimeOfWeddingParty(weddingInfo.getTimeOfWeddingParty());
-            wedding.setCouple(weddingInfo.getCouple());
+//            wedding.setCouple(weddingInfo.getCouple());
             weddingRepository.save(wedding);
         }
         log.info("Wedding edited.");
@@ -229,4 +231,54 @@ public class WeddingService {
         taskToDoRepository.deleteById(id);
         log.info("Task removed.");
     }
+
+    public List<TaskCost> findAll() {
+        return costRepository.findAll();
+    }
+
+    public Optional<TaskCost> findCostOfTask(Long id) {
+        return costRepository.findById(id);
+    }
+
+    public void addCostToTask(Long taskId, Double bailCost,LocalDate bailCostDeadline, Double totalCost,LocalDate totalCostDeadline ) {
+        Optional<TypeOfCost> optionalTypeOfCost = typeofCostRepository.findById(taskId);
+        if (optionalTypeOfCost.isPresent()) {
+            TypeOfCost typeOfCost= optionalTypeOfCost.get();
+
+            TaskCost taskCost = TaskCost.builder()
+                    .typeOfCost(typeOfCost)
+                    .bailCost(bailCost)
+                    .bailCostDeadline(bailCostDeadline)
+                    .totalCost(totalCost)
+                    .totalCostDeadline(totalCostDeadline)
+                    .build();
+
+            costRepository.save(taskCost);
+        }
+        log.info("Cost added.");
+    }
+
+//    public Double getAllCosts() {
+//        costRepository.getAllCosts(getWeddingWithId());
+//        return costRepository.;
+//    }
+
+//    public Double sumAllCosts (){
+//        for (int i = 0; i <=taskToDoRepository.count() ; i++) {
+//            long j = i;
+//            Double CosttoAdd = ta
+//            Double allCosts= 0.00;
+//            allCosts
+//                    taskToDoRepository.findById(j);
+//        }
+//
+//        taskToDoRepository.findAll().stream().filter(cCost -> cCost.getPlannedCost());
+//        return costRepository.findAll();
+//
+//        Optional<TypeOfTask> optionalTaskType = typeofTaskRepository.findAll()
+//                .stream()
+//                .filter(tTask -> tTask.getName().equalsIgnoreCase(ownTypeOfTask))
+//                .findAny();
+//    }
+
 }

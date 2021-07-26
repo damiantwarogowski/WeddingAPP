@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>Hello Index Page!</title>
+    <title>Wedding details</title>
     <th:block th:replace="fragments :: link-styles" th:remove="tag"/>
 </head>
 <body>
@@ -41,10 +41,11 @@
                 <div class="col-md-6">Time of party:</div>
                 <div class="col-md-6" th:text="*{timeOfWeddingParty}"></div>
             </div>
-<!--            <div class="row col-md-12 form-input-row">-->
-<!--                <div class="col-md-6">Planned cost:</div>-->
-<!--                <div class="col-md-6" th:text="*{tasks}"></div>-->
-<!--            </div>-->
+            <div class="row col-md-12 form-input-row">
+                <div class="col-md-6">Planned cost:</div>
+                <div class="col-md-6" ></div>
+<!--                th:text="*{wedding.getTasks()}"-->
+            </div>
         </div>
 
 
@@ -64,21 +65,24 @@
                     <div class="col-4">Type of task</div>
                     <div class="col-2">Reminder day</div>
                     <div class="col-2">Deadline day</div>
-                    <div class="col-2"></div>
+
+                    <div class="col-2">Planned cost</div>
+
                     <div class="col-2"></div>
                 </div>
                 <div th:each="task : ${wedding.getTasks()}" class="row col-md-12 list-data-row">
                     <div class="col-4" th:text="${task.typeOfTask.name}"></div>
                     <div class="col-2" th:text="${task.reminderDay}"></div>
                     <div class="col-2" th:text="${task.deadlineDay}"></div>
+                    <div class="col-2" th:text="${task.plannedCost}"></div>
 
-                    <div class="col-2">
+                    <div class="col-1">
                         <a class="col-6" th:href="@{'/tasks/' + ${task.id}}">
                             <button type="button" class="btn btn-outline-warning col-12">Details</button>
                         </a>
 
                     </div>
-                    <div class="col-2">
+                    <div class="col-1">
                         <a class="col-6" th:href="@{'/tasks/remove/' + ${task.id}}">
                             <button type="button" class="btn btn-outline-danger col-12">Remove</button>
                         </a>
@@ -86,6 +90,13 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div class="row col-12 form-container" >
+            <a  class="row col-md-4 form-input-row" th:href="@{'/wedding/weddings/'}">
+                <button type="button" class="btn btn-secondary col-12">Back to the weddings list</button>
+            </a>
+            <div class="col-8"></div>
         </div>
     </div>
 </main>

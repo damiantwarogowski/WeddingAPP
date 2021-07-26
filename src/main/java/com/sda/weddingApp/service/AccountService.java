@@ -113,6 +113,6 @@ public class AccountService {
                 return account.getId();
             }
         }
-        throw new UnsupportedOperationException("Musisz być zalogowany!");
+        throw new UnsupportedOperationException("You have to be logged in!");
     }
 }

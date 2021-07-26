@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>Hello Admin Account List!</title>
+    <title>Weddings list</title>
     <th:block th:replace="fragments :: link-styles" th:remove="tag"/>
 </head>
 <body>
@@ -12,6 +12,7 @@
         <h2>Wedding List Page</h2>
         <div class="row col-md-12">
             <div class="row col-md-12 list-header-row">
+
                 <div class="col-1">Id</div>
                 <div class="col-2">Couple</div>
                 <div class="col-2">Date of wedding</div>
@@ -25,6 +26,7 @@
                     <div class="col-2" th:text="${wedding.getDateOfWedding()} ?:''"></div>
                     <div class="col-2" th:text="${wedding.getTimeOfWedding()} ?:''"></div>
                     <div class="col-2" th:text="${wedding.getTimeOfWedding()} ?:''"></div>
+
                     <div class="col-2 row">
                         <a class="col-8" th:href="@{'/wedding/details/' + ${wedding.getId()}}">
                             <button type="button" class="btn btn-warning col-12">Details</button>
