@@ -1,6 +1,7 @@
 package com.sda.weddingApp.controller;
 
 import com.sda.weddingApp.model.TaskCost;
+import com.sda.weddingApp.model.Wedding;
 import com.sda.weddingApp.service.CostService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -76,5 +77,12 @@ public class CostController {
             return "cost-edit";
         }
         return "redirect:/tasks";
+    }
+
+    @GetMapping("/remove/{id}")
+    public String removeCost(@PathVariable(name = "id") Long identificatory, Wedding wedding) {
+        costService.removeCost(identificatory);
+        return "redirect:/tasks/" + wedding.getId();
+        //ID WEDDING CZY ID TASK?
     }
 }
