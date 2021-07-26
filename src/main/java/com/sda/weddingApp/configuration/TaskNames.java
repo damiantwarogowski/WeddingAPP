@@ -3,6 +3,7 @@ package com.sda.weddingApp.configuration;
 import com.sda.weddingApp.model.TaskToDo;
 
 public interface TaskNames {
+    public final static String TASK_EMPTY = "";
     public final static String TASK_VENUE = "Booking a wedding hall";
     public final static String TASK_BAND = "Booking a band";
     public final static String TASK_DJ = "Booking a DJ";

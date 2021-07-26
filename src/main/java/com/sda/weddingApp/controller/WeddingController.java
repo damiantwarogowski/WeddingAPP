@@ -38,6 +38,9 @@ public class WeddingController {
     public String getAllWeddings(Model model, @PathVariable Long identifier) {
         Optional<Wedding> weddingOptional = weddingService.getWeddingWithId(identifier);
         if (weddingOptional.isPresent()) {
+            Double totalCost = weddingOptional.get().getTasks().stream()
+                    .mapToDouble(task -> task.getPlannedCost() == null ? 0.00 : task.getPlannedCost()).sum();
+            model.addAttribute("total_cost", totalCost);
             model.addAttribute("wedding", weddingOptional.get());
             return "wedding-details";
         }
@@ -51,7 +54,7 @@ public class WeddingController {
     }
 
     @GetMapping("/edit/{identif}")
-    public String editWedding(Model model, @PathVariable(name="identif") Long id) {
+    public String editWedding(Model model, @PathVariable(name = "identif") Long id) {
         Optional<Wedding> weddingToEdit = weddingService.getWeddingWithId(id);
         if (weddingToEdit.isPresent()) {
             model.addAttribute("wedding_edit", weddingToEdit.get());
@@ -64,7 +67,7 @@ public class WeddingController {
     @PostMapping("/edit/submit")
     public String submitSurvey(Wedding wedding) {
         weddingService.editWedding(wedding);
-        return "redirect:/wedding/details/"+wedding.getId();
+        return "redirect:/wedding/details/" + wedding.getId();
     }
 
     @GetMapping("/add")
@@ -82,7 +85,7 @@ public class WeddingController {
     }
 
     @GetMapping("/couple/edit/{identif}")
-    public String editCouple(Model model, @PathVariable(name="identif") Long id) {
+    public String editCouple(Model model, @PathVariable(name = "identif") Long id) {
         Optional<Wedding> weddingToEdit = weddingService.getWeddingWithId(id);
         if (weddingToEdit.isPresent()) {
             Wedding wedding = weddingToEdit.get();
@@ -91,12 +94,13 @@ public class WeddingController {
             model.addAttribute("person_two", wedding.getCouple().getPerson2());
             return "couple-edit";
         }
-        return "redirect:/wedding/details/"+id;
+        return "redirect:/wedding/details/" + id;
     }
 
     @PostMapping("/couple/edit/submit")
     public String editCouple(Long wedding_id, String person_one_name, String person_two_name) {
         weddingService.editCouple(wedding_id, person_one_name, person_two_name);
-        return "redirect:/wedding/details/"+wedding_id;
+        return "redirect:/wedding/details/" + wedding_id;
     }
+
 }

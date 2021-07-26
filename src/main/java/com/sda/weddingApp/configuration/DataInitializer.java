@@ -37,6 +37,7 @@ public class DataInitializer implements ApplicationListener<ContextRefreshedEven
     private final static String[] AVAILABLE_ROLES = {ROLE_ADMIN, ROLE_USER, ROLE_SUPERVISOR};
 
     private final static String[] DEFAULT_TYPES_OF_TASKS = {
+            TASK_EMPTY,
             TASK_BAND,
             TASK_DJ,
             TASK_VENUE,
