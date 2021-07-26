@@ -115,4 +115,16 @@ public class AccountService {
         }
         throw new UnsupportedOperationException("You have to be logged in!");
     }
+
+
+    public Account extractAccountFromPrincipal(Principal principal) {
+        if(principal instanceof UsernamePasswordAuthenticationToken){
+            UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = (UsernamePasswordAuthenticationToken) principal;
+            if(usernamePasswordAuthenticationToken.getPrincipal() instanceof Account) {
+                Account account = (Account) usernamePasswordAuthenticationToken.getPrincipal();
+                return account;
+            }
+        }
+        throw new UnsupportedOperationException("You have to be logged in!");
+    }
 }

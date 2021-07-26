@@ -27,8 +27,8 @@ public class WeddingController {
     private final AccountService accountService;
 
     @GetMapping("/weddings")
-    public String getAllWeddings(Model model) {
-        List<Wedding> weddingList = weddingService.getAll();
+    public String getAllWeddings(Model model, Principal principal) {
+        List<Wedding> weddingList = weddingService.getAllFor(accountService.extractAccountFromPrincipal(principal));
 
         model.addAttribute("weddingsList", weddingList);
         return "wedding-list";

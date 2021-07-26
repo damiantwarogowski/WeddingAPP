@@ -11,9 +11,9 @@
 <main>
     <div class="container marketing">
         <hr>
-        <h2>Add cost to  // th:text="${task.typeOfTask.name}": </h2>
+        <h2 >Add cost to  <span th:text="${task.typeOfTask.name}"/></h2>
 
-        <form th:action="@{/cost/add/}" method="post" th:object="${new_cost}">
+        <form th:action="@{/cost/add}" method="post" th:object="${new_cost}">
             <input type="number" readonly hidden th:value="${taskId}" name="taskId">
             <div class="row col-12 form-container">
                 <div class="row col-md-12 form-input-row">
@@ -59,7 +59,7 @@
                 <div class="row col-md-4 form-input-row">
                     <input class="btn btn-success col-12" type="submit" value="Add a new cost" >
                 </div>
-
+            </div>
 <!--            <div class="row col-12 form-container">-->
 <!--                <input class="form-control btn btn-submit" type="submit">-->
 <!--            </div>-->

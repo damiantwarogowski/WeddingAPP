@@ -37,9 +37,4 @@ public class TaskCost {
 
     @ManyToOne()
     private TaskToDo task;
-
-    @ManyToOne()
-    @ToString.Exclude
-    @JsonBackReference
-    private TypeOfCost typeOfCost;
 }

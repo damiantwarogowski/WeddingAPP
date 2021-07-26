@@ -9,4 +9,5 @@ import java.util.List;
 
 @Repository
 public interface WeddingFormRepository extends JpaRepository<Wedding, Long> {
+    List<Wedding> findAllByOwner(Account owner);
 }

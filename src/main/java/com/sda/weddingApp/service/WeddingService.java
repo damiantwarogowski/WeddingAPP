@@ -134,7 +134,7 @@ public class WeddingService {
 
 
             }
-        } else{
+        } else {
             Optional<TypeOfTask> optionalTaskType = typeofTaskRepository.findAll()
                     .stream()
                     .filter(tTask -> tTask.getName().equalsIgnoreCase(ownTypeOfTask))
@@ -144,7 +144,7 @@ public class WeddingService {
             if (optionalTaskType.isPresent()) {
                 // znaleźliśmy
                 taskType = optionalTaskType.get();
-            }else{
+            } else {
                 // nie znaleźliśmy
                 // 1. tworzymy nowy task
                 TypeOfTask doDodania = TypeOfTask.builder()
@@ -156,7 +156,7 @@ public class WeddingService {
             }
 
         }
-        if( taskType == null){
+        if (taskType == null) {
             throw new UnsupportedOperationException("Unexpected error.");
         }
 
@@ -189,7 +189,7 @@ public class WeddingService {
 
     public void editWedding(Wedding weddingInfo) {
         Optional<Wedding> weddingOptional = weddingRepository.findById(weddingInfo.getId());
-        if(weddingOptional.isPresent()) {
+        if (weddingOptional.isPresent()) {
             Wedding wedding = weddingOptional.get();
             wedding.setDateOfWedding(weddingInfo.getDateOfWedding());
             wedding.setTimeOfWedding(weddingInfo.getTimeOfWedding());
@@ -202,7 +202,7 @@ public class WeddingService {
 
     public void editCouple(Long weddingId, String personOne, String personTwo) {
         Optional<Wedding> weddingOptional = weddingRepository.findById(weddingId);
-        if(weddingOptional.isPresent()) {
+        if (weddingOptional.isPresent()) {
             Wedding wedding = weddingOptional.get();
             wedding.getCouple().setPerson1(personOne);
             wedding.getCouple().setPerson2(personTwo);
@@ -214,7 +214,7 @@ public class WeddingService {
 
     public void editTask(TaskToDo taskToDoInfo) {
         Optional<TaskToDo> taskEdit = taskToDoRepository.findById(taskToDoInfo.getId());
-        if(taskEdit.isPresent()) {
+        if (taskEdit.isPresent()) {
             TaskToDo taskToDo = taskEdit.get();
             taskToDo.setReminderDay(taskToDoInfo.getReminderDay());
             taskToDo.setDeadlineDay(taskToDoInfo.getDeadlineDay());
@@ -224,12 +224,18 @@ public class WeddingService {
         }
         log.info("Task edited.");
     }
-//    public List<TaskToDo> getAll() {
+
+    //    public List<TaskToDo> getAll() {
 //        return taskToDoRepository.findAll();
 //    }
-    public void removeTask(Long id) {
-        taskToDoRepository.deleteById(id);
-        log.info("Task removed.");
+    public Long removeTask(Long id) {
+        Optional<TaskToDo> taskToDoOptional = taskToDoRepository.findById(id);
+        if(taskToDoOptional.isPresent()) {
+            TaskToDo taskToDo =taskToDoOptional.get();
+            taskToDoRepository.deleteById(id);
+            return taskToDo.getWedding().getId();
+        }
+        throw new UnsupportedOperationException("Task with provided identifier does not exist!");
     }
 
     public List<TaskCost> findAll() {
@@ -240,13 +246,13 @@ public class WeddingService {
         return costRepository.findById(id);
     }
 
-    public void addCostToTask(Long taskId, Double bailCost,LocalDate bailCostDeadline, Double totalCost,LocalDate totalCostDeadline ) {
-        Optional<TypeOfCost> optionalTypeOfCost = typeofCostRepository.findById(taskId);
-        if (optionalTypeOfCost.isPresent()) {
-            TypeOfCost typeOfCost= optionalTypeOfCost.get();
+    public void addCostToTask(Long taskId, Double bailCost, LocalDate bailCostDeadline, Double totalCost, LocalDate totalCostDeadline) {
+        Optional<TaskToDo> optionalTask = taskToDoRepository.findById(taskId);
+        if (optionalTask.isPresent()) {
+            TaskToDo task = optionalTask.get();
 
             TaskCost taskCost = TaskCost.builder()
-                    .typeOfCost(typeOfCost)
+                    .task(task)
                     .bailCost(bailCost)
                     .bailCostDeadline(bailCostDeadline)
                     .totalCost(totalCost)
@@ -265,7 +271,6 @@ public class WeddingService {
 //        costRepository.deleteById(id);
 //        log.info("Cost removed.");
 //    }
-
 
 
 //    public Double getAllCosts() {
