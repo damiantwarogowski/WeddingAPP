@@ -63,7 +63,7 @@ public class WeddingController {
     @PostMapping("/edit/submit")
     public String submitSurvey(Wedding wedding) {
         weddingService.editWedding(wedding);
-        return "redirect:/";
+        return "redirect:/wedding/details/"+wedding.getId();
     }
 
     @GetMapping("/add")

@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Survey Page</title>
+    <title>New wedding</title>
     <th:block th:replace="fragments :: link-styles" th:remove="tag"/>
 </head>
 <body>
@@ -223,8 +223,16 @@
                 </div>
             </div>
             <div class="row col-12 form-container">
-                <input class="form-control btn btn-submit" type="submit">
+                <div class="col-4"></div>
+                <div class="row col-md-4 form-input-row">
+                    <input class="btn btn-success col-12" type="submit" value="Add new wedding" >
+                </div>
+                <div class="col-4"></div>
             </div>
+
+<!--            <div class="row col-12 form-container">-->
+<!--                <input class="form-control btn btn-submit" type="submit">-->
+<!--            </div>-->
         </form>
     </div>
 </main>

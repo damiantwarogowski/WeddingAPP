@@ -70,6 +70,13 @@
                 </div>
             </div>
         </div>
+        <div class="row col-12 form-container" >
+<!--          <div class="row col-12 form-container" th:object="${weddingId}"-->
+            <a  class="row col-md-4 form-input-row" th:href="@{'/wedding/weddings/'}">
+                <button type="button" class="btn btn-secondary col-12">Back to wedding details //wraca na listę ślubów!!</button>
+            </a>
+            <div class="col-8"></div>
+        </div>
     </div>
 </main>
 <th:block th:replace="fragments :: scripts" th:remove="tag"/>

@@ -48,14 +48,6 @@ public class TaskToDo {
     @EqualsAndHashCode.Exclude
     private Set<TaskCost> costs;
 
-    private Double allCosts;
-
-//    public Double sumAllCosts (){
-//        for (int i = 0; i <= costs.size() ; i++) {
-//            allCosts += costs.
-//        }
-//
-//    }
 }
 
 

@@ -12,41 +12,43 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-@Slf4j
-@Service
-@RequiredArgsConstructor
-public class CostService {
-    private final CostRepository costRepository;
-    private final TaskToDoRepository taskToDoRepository;
-    private final TypeofCostRepository typeofCostRepository;
+//@Slf4j
+//@Service
+//@RequiredArgsConstructor
+//public class CostService {
+//    private final CostRepository costRepository;
+//    private final TaskToDoRepository taskToDoRepository;
+//    private final TypeofCostRepository typeofCostRepository;
+//
 
 
+//    public List<TaskCost> findAll() {
+//        return costRepository.findAll();
+//    }
+//
+//    public Optional<TaskCost> findCostOfTask(Long id) {
+//        return costRepository.findById(id);
+//    }
+//
+//    public void addCostToTask(Long taskId, Double bailCost,LocalDate bailCostDeadline, Double totalCost,LocalDate totalCostDeadline ) {
+//        Optional<TypeOfCost> optionalTypeOfCost = typeofCostRepository.findById(taskId);
+//        if (optionalTypeOfCost.isPresent()) {
+//            TypeOfCost typeOfCost= optionalTypeOfCost.get();
+//
+//            TaskCost taskCost = TaskCost.builder()
+//                    .typeOfCost(typeOfCost)
+//                    .bailCost(bailCost)
+//                    .bailCostDeadline(bailCostDeadline)
+//                    .totalCost(totalCost)
+//                    .totalCostDeadline(totalCostDeadline)
+//                    .build();
+//
+//            costRepository.save(taskCost);
+//        }
+//        log.info("Cost added.");
+//    }
 
-    public List<TaskCost> findAll() {
-        return costRepository.findAll();
-    }
 
-    public Optional<TaskCost> findCostOfTask(Long id) {
-        return costRepository.findById(id);
-    }
-
-    public void addCostToTask(Long taskId, Double bailCost,LocalDate bailCostDeadline, Double totalCost,LocalDate totalCostDeadline ) {
-        Optional<TypeOfCost> optionalTypeOfCost = typeofCostRepository.findById(taskId);
-        if (optionalTypeOfCost.isPresent()) {
-            TypeOfCost typeOfCost= optionalTypeOfCost.get();
-
-            TaskCost taskCost = TaskCost.builder()
-                    .typeOfCost(typeOfCost)
-                    .bailCost(bailCost)
-                    .bailCostDeadline(bailCostDeadline)
-                    .totalCost(totalCost)
-                    .totalCostDeadline(totalCostDeadline)
-                    .build();
-
-            costRepository.save(taskCost);
-        }
-        log.info("Cost added.");
-    }
 //    public void addCostTOTask(Long weddingId, Long typeOfCostId, TaskCost taskCost,  double bailCost,LocalDate bailCostDeadline, double totalCost,LocalDate totalCostDeadline) {
 //        //
 //        TypeOfCo taskType = null;
@@ -97,5 +99,5 @@ public class CostService {
 //        }
 //    }
 
-}
+//}
 

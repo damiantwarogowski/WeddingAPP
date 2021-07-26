@@ -32,6 +32,6 @@ public class SurveyController {
     @PostMapping("/submit")
     public String submitSurvey(SurveyAnswers answers, Principal principal) {
         weddingService.createWedding(answers, accountService.extractIdFromPrincipal(principal));
-        return "redirect:/";
+        return "redirect:/wedding/weddings";
     }
 }

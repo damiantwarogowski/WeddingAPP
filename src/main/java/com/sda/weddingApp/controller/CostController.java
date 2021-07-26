@@ -1,7 +1,8 @@
 package com.sda.weddingApp.controller;
 
 import com.sda.weddingApp.model.TaskCost;
-import com.sda.weddingApp.service.CostService;
+//import com.sda.weddingApp.service.CostService;
+import com.sda.weddingApp.service.WeddingService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -21,7 +22,7 @@ import java.util.Optional;
 @RequestMapping("/cost")
 @RequiredArgsConstructor
 public class CostController {
-    private final CostService costService;
+    private final WeddingService weddingService;
 
     @GetMapping("")
     public String getCostPage(Model model) {
@@ -54,13 +55,13 @@ public class CostController {
 //        totalCostDeadline.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
 
-        costService.addCostToTask(taskId, bailCost,bailCostDeadline,totalCost,totalCostDeadline);
+        weddingService.addCostToTask(taskId, bailCost,bailCostDeadline,totalCost,totalCostDeadline);
         return "redirect:/tasks/";
     }
 
     @GetMapping("/{idCost}")
     public String getAllCosts(Model model, @PathVariable Long idCost) {
-        Optional<TaskCost> costOptional = costService.findCostOfTask(idCost);
+        Optional<TaskCost> costOptional = weddingService.findCostOfTask(idCost);
         if (costOptional.isPresent()) {
             model.addAttribute("cost", costOptional.get());
             return "cost-details";
@@ -69,7 +70,7 @@ public class CostController {
     }
     @GetMapping("/edit/{idCostEdit}")
     public String editCost(Model model, @PathVariable(name="idCostEdit") Long id) {
-        Optional<TaskCost> costToEdit = costService.findCostOfTask(id);
+        Optional<TaskCost> costToEdit = weddingService.findCostOfTask(id);
         if (costToEdit.isPresent()) {
             model.addAttribute("cost_edit", costToEdit.get());
             log.info("Cost to edit: " + costToEdit);

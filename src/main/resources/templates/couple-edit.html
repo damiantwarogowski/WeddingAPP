@@ -33,7 +33,13 @@
                 </div>
             </div>
             <div class="row col-12 form-container">
-                <input class="form-control btn btn-submit" type="submit">
+                <a  class="row col-md-4 form-input-row" th:href="@{'/wedding/details/' + ${wedding_id}}">
+                    <button type="button" class="btn btn-secondary col-12">Back to the wedding details</button>
+                </a>
+                <div class="col-4"></div>
+                <div class="row col-md-4 form-input-row">
+                    <input class="btn btn-success col-12" type="submit" value="Edit the couple" >
+                </div>
             </div>
         </form>
     </div>
