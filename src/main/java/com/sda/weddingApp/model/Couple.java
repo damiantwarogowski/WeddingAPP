@@ -24,4 +24,9 @@ public class Couple {
 
     @OneToOne(mappedBy = "couple")
     private Wedding wedding;
+
+    @Override
+    public String toString() {
+        return person1 + " & " + person2;
+    }
 }

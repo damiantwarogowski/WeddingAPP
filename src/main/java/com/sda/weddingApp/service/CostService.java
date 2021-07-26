@@ -47,55 +47,10 @@ public class CostService {
         }
         log.info("Cost added.");
     }
-//    public void addCostTOTask(Long weddingId, Long typeOfCostId, TaskCost taskCost,  double bailCost,LocalDate bailCostDeadline, double totalCost,LocalDate totalCostDeadline) {
-//        //
-//        TypeOfCo taskType = null;
-//        // czy użytkownik wpisał własną nazwę taska?
-//        if (ownTypeOfTask == null || ownTypeOfTask.isEmpty()) {
-//            // nie
-//            Optional<TypeOfTask> optionalTaskType = typeofTaskRepository.findById(typeOfTaskId);
-//            if (optionalTaskType.isPresent()) {
-//                taskType = optionalTaskType.get();
-//
-//
-//            }
-//        } else{
-//            Optional<TypeOfTask> optionalTaskType = typeofTaskRepository.findAll()
-//                    .stream()
-//                    .filter(tTask -> tTask.getName().equalsIgnoreCase(ownTypeOfTask))
-//                    .findAny();
-//
-//            // gościu wpisał własne wejście
-//            if (optionalTaskType.isPresent()) {
-//                // znaleźliśmy
-//                taskType = optionalTaskType.get();
-//            }else{
-//                // nie znaleźliśmy
-//                // 1. tworzymy nowy task
-//                TypeOfTask doDodania = TypeOfTask.builder().name(ownTypeOfTask).build();
-//                // 2. dodajemy go do bazy
-//                taskType = typeofTaskRepository.save(doDodania);
-//
-//            }
-//
-//        }
-//        if( taskType == null){
-//            throw new UnsupportedOperationException("Unexpected error.");
-//        }
-//
-//        Optional<Wedding> optionalWedding = weddingRepository.findById(weddingId);
-//        if (optionalWedding.isPresent()) {
-//            Wedding wedding = optionalWedding.get();
-//
-//            TaskToDo taskToDo = TaskToDo.builder()
-//                    .typeOfTask(taskType)
-//                    .deadlineDay(task.getDeadlineDay())
-//                    .wedding(wedding)
-//                    .build();
-//
-//            taskToDoRepository.save(taskToDo);
-//        }
-//    }
+    public void removeCost(Long id) {
+        costRepository.deleteById(id);
+        log.info("Cost removed.");
+    }
 
 }
 
