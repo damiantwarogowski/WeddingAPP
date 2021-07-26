@@ -27,7 +27,7 @@
 
             <div class="row col-md-12 form-input-row">
                 <div class="col-md-6">Date & time of the task:</div>
-                <div class="col-md-6" th:text="*{deadlineDay + ' ' + timeOfTask}"></div>
+                <div class="col-md-6" th:text="(*{deadlineDay} ?: '') + ' ' + (*{timeOfTask} ?: '')"></div>
             </div>
 
             <div class="row col-md-12 form-input-row">
@@ -47,21 +47,19 @@
             <a class="col-2" th:href="@{'/cost/add/' + ${task.id}}">
                 <button type="button" class="btn btn-success col-12">Add cost</button>
             </a>
-<!--            <a class="col-2" th:href="@{'/cost/remove/' + ${task.id}}">-->
-<!--                <button type="button" class="btn btn-danger col-12">Remove cost</button>-->
-<!--            </a>-->
+            <!--            <a class="col-2" th:href="@{'/cost/remove/' + ${task.id}}">-->
+            <!--                <button type="button" class="btn btn-danger col-12">Remove cost</button>-->
+            <!--            </a>-->
         </div>
         <div class="row col-12 form-container">
             <div class="row col-md-12">
                 <div class="row col-md-12 list-header-row">
-                    <div class="col-2">Cost name</div>
                     <div class="col-2">Bail cost</div>
                     <div class="col-2">Bail cost deadline</div>
                     <div class="col-2">Total cost</div>
                     <div class="col-2">Total cost deadline</div>
                 </div>
                 <div th:each="cost : ${task.getCosts()}" class="row col-md-12 list-data-row">
-                    <div class="col-2" th:text="${cost.costName}"></div>
                     <div class="col-2" th:text="${cost.bailCost}"></div>
                     <div class="col-2" th:text="${cost.bailCostDeadline}"></div>
                     <div class="col-2" th:text="${cost.totalCost}"></div>
@@ -81,10 +79,10 @@
                 </div>
             </div>
         </div>
-        <div class="row col-12 form-container" >
-<!--          <div class="row col-12 form-container" th:object="${weddingId}"-->
-            <a  class="row col-md-4 form-input-row" th:href="@{'/wedding/weddings/'}">
-                <button type="button" class="btn btn-secondary col-12">Back to wedding details //wraca na listę ślubów!!</button>
+        <div class="row col-12 form-container">
+            <!--          <div class="row col-12 form-container" th:object="${weddingId}"-->
+            <a class="row col-md-4 form-input-row" th:href="@{'/wedding/details/' + ${task.wedding.id}}">
+                <button type="button" class="btn btn-secondary col-12">Back to wedding details</button>
             </a>
             <div class="col-8"></div>
         </div>

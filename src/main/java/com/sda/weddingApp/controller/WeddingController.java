@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.security.Principal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -26,8 +27,8 @@ public class WeddingController {
     private final AccountService accountService;
 
     @GetMapping("/weddings")
-    public String getAllWeddings(Model model) {
-        List<Wedding> weddingList = weddingService.getAll();
+    public String getAllWeddings(Model model, Principal principal) {
+        List<Wedding> weddingList = weddingService.getAllFor(accountService.extractAccountFromPrincipal(principal));
 
         model.addAttribute("weddingsList", weddingList);
         return "wedding-list";

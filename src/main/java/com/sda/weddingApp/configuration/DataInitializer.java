@@ -2,9 +2,11 @@ package com.sda.weddingApp.configuration;
 
 import com.sda.weddingApp.model.Account;
 import com.sda.weddingApp.model.AccountRole;
-import com.sda.weddingApp.model.TypeOfCost;
 import com.sda.weddingApp.model.TypeOfTask;
-import com.sda.weddingApp.repository.*;
+import com.sda.weddingApp.repository.AccountRepository;
+import com.sda.weddingApp.repository.AccountRoleRepository;
+import com.sda.weddingApp.repository.CostRepository;
+import com.sda.weddingApp.repository.TypeofTaskRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -63,10 +65,9 @@ public class DataInitializer implements ApplicationListener<ContextRefreshedEven
     private final PasswordEncoder passwordEncoder;
     private final AccountRepository accountRepository;
     private final AccountRoleRepository accountRoleRepository;
-    private final CoupleRepository coupleRepository;
+   private  final CostRepository costRepository;
 
     private final TypeofTaskRepository typeofTaskRepository;
-    private  final TypeofCostRepository typeofCostRepository;
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
@@ -79,9 +80,6 @@ public class DataInitializer implements ApplicationListener<ContextRefreshedEven
 
         for (String task : DEFAULT_TYPES_OF_TASKS) {
             addTask(task);
-        }
-        for (String cost : DEFAULT_TYPES_OF_COSTS) {
-            addCost(cost);
         }
     }
 
@@ -96,16 +94,16 @@ public class DataInitializer implements ApplicationListener<ContextRefreshedEven
         }
     }
 
-    private void addCost(String cost) {
-        Optional<TypeOfCost> optionalTypeOfCost = typeofCostRepository.findByName(cost);
-        if (!optionalTypeOfCost.isPresent()) {
-            TypeOfCost typeOfCost = TypeOfCost.builder()
-                    .name(cost)
-                    .build();
-
-            typeofCostRepository.save(typeOfCost);
-        }
-    }
+//    private void addCost(String cost) {
+//        Optional<TaskCost> optionalTypeOfCost = costRepository();
+//        if (!optionalTypeOfCost.isPresent()) {
+//            TaskCost taskCost = TaskCost.builder()
+//                    .name(cost)
+//                    .build();
+//
+//            costRepository.save(taskCost);
+//        }
+//    }
 
     private void addUser(String username, String password, String[] roles) {
         Optional<Account> optionalAccount = accountRepository.findByUsername(username);

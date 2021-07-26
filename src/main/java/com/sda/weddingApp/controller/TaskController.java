@@ -1,7 +1,6 @@
 package com.sda.weddingApp.controller;
 
 import com.sda.weddingApp.model.TaskToDo;
-import com.sda.weddingApp.model.Wedding;
 import com.sda.weddingApp.service.AccountService;
 import com.sda.weddingApp.service.TypeOfTaskService;
 import com.sda.weddingApp.service.WeddingService;
@@ -83,8 +82,8 @@ public class TaskController {
     }
 
     @GetMapping("/remove/{id}")
-    public String removeTask(@PathVariable(name = "id") Long identificatory, Wedding wedding) {
-        weddingService.removeTask(identificatory);
-        return "redirect:/wedding/details/" + wedding.getId();
+    public String removeTask(@PathVariable(name = "id") Long identificatory) {
+        Long weddingId = weddingService.removeTask(identificatory);
+        return "redirect:/wedding/details/" + weddingId;
     }
 }
