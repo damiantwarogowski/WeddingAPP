@@ -49,6 +49,7 @@ import java.util.Optional;
 //    }
 
 
+
 //    public void addCostTOTask(Long weddingId, Long typeOfCostId, TaskCost taskCost,  double bailCost,LocalDate bailCostDeadline, double totalCost,LocalDate totalCostDeadline) {
 //        //
 //        TypeOfCo taskType = null;
@@ -98,6 +99,16 @@ import java.util.Optional;
 //            taskToDoRepository.save(taskToDo);
 //        }
 //    }
+
+            costRepository.save(taskCost);
+        }
+        log.info("Cost added.");
+    }
+    public void removeCost(Long id) {
+        costRepository.deleteById(id);
+        log.info("Cost removed.");
+    }
+
 
 //}
 

@@ -29,7 +29,8 @@
             </div>
             <div class="row col-md-12 form-input-row">
                 <div class="col-md-6">Date & time:</div>
-               <div class="col-md-6" th:text="*{dateOfWedding + ' ' + timeOfWedding }"></div>
+<!--   WERSJA PONIZEJ JEST BEZ WYSWIETLANIA NULLA    <div class="col-md-6" th:text="*{dateOfWedding + ' ' + timeOfWedding }"></div>-->
+                <div class="col-md-6" th:text="(*{dateOfWedding} ?: '') + ' ' + (*{timeOfWedding} ?: '')"></div>
             </div>
             <div class="row col-md-12 form-input-row">
                 <div class="col-md-6">Couple:</div>
@@ -64,6 +65,7 @@
                     <div class="col-4">Type of task</div>
                     <div class="col-2">Reminder day</div>
                     <div class="col-2">Deadline day</div>
+
                     <div class="col-2">Planned cost</div>
 
                     <div class="col-2"></div>

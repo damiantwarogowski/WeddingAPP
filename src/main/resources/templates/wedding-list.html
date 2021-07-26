@@ -12,26 +12,26 @@
         <h2>Wedding List Page</h2>
         <div class="row col-md-12">
             <div class="row col-md-12 list-header-row">
-<!--                <div class="col-2">Id</div>-->
+
+                <div class="col-1">Id</div>
+                <div class="col-2">Couple</div>
                 <div class="col-2">Date of wedding</div>
                 <div class="col-2">Time of wedding</div>
-                <div class="col-2">Time of wedding party</div>
-                <div class="col-2">Couple</div>
-                <div class="col-2"></div>
-                <div class="col-2"></div>
-
+                <div class="col-3">Time of wedding party</div>
+                <div class="col-1"></div>
+                <div class="col-1"></div>
                 <div th:each="wedding : ${weddingsList}" class="row col-md-12 list-data-row">
-<!--                    <div class="col-2" th:text="${wedding.getId()}"></div>-->
-                    <div class="col-2" th:text="${wedding.getDateOfWedding()}"></div>
-                    <div class="col-2" th:text="${wedding.getTimeOfWedding()}"></div>
-                    <div class="col-2" th:text="${wedding.getTimeOfWeddingParty()}"></div>
+                    <div class="col-1" th:text="${wedding.getId()}"></div>
                     <div class="col-2" th:text="${wedding.couple}"></div>
+                    <div class="col-2" th:text="${wedding.getDateOfWedding()} ?:''"></div>
+                    <div class="col-2" th:text="${wedding.getTimeOfWedding()} ?:''"></div>
+                    <div class="col-2" th:text="${wedding.getTimeOfWedding()} ?:''"></div>
 
                     <div class="col-2 row">
                         <a class="col-8" th:href="@{'/wedding/details/' + ${wedding.getId()}}">
                             <button type="button" class="btn btn-warning col-12">Details</button>
                         </a></div>
-                    <div class="col-2 row">
+                    <div class="col-1 row">
                         <a class="col-8" th:href="@{'/wedding/remove/' + ${wedding.getId()}}">
                             <button type="button" class="btn btn-danger col-12">Remove</button>
                         </a>
