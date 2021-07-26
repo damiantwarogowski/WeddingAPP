@@ -1,7 +1,6 @@
 package com.sda.weddingApp.controller;
 
 import com.sda.weddingApp.model.TaskToDo;
-import com.sda.weddingApp.model.Wedding;
 import com.sda.weddingApp.service.AccountService;
 import com.sda.weddingApp.service.TypeOfTaskService;
 import com.sda.weddingApp.service.WeddingService;

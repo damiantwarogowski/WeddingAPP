@@ -23,7 +23,7 @@ public class WeddingService {
     private final TaskToDoRepository taskToDoRepository;
     private final CoupleRepository coupleRepository;
     private final CostRepository costRepository;
-    private final TypeofCostRepository typeofCostRepository;
+
 
     public void createWedding(SurveyAnswers answers, Long accountId) {
         Account account = accountRepository.getById(accountId);
@@ -256,6 +256,10 @@ public class WeddingService {
             costRepository.save(taskCost);
         }
         log.info("Cost added.");
+    }
+
+    public List<Wedding> getAllFor(Account extractedPrincipal) {
+        return weddingRepository.findAllByOwner(extractedPrincipal);
     }
 //    public void removeCost(Long id) {
 //        costRepository.deleteById(id);
