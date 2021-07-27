@@ -17,6 +17,7 @@
             <!--            <form th:action="@{/cost/edit/submit}" method="post" th:object="${cost_edit}">-->
 
             <input type="number" th:field="*{id}" hidden readonly>
+            <input th:field="*{task}" hidden readonly>
             <div class="row col-12 form-container">
                 <div class="row col-md-12 form-input-row">
                     <div class="col-md-6">

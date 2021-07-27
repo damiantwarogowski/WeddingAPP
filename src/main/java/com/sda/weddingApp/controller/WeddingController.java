@@ -38,8 +38,12 @@ public class WeddingController {
     public String getAllWeddings(Model model, @PathVariable Long identifier) {
         Optional<Wedding> weddingOptional = weddingService.getWeddingWithId(identifier);
         if (weddingOptional.isPresent()) {
-            Double totalCost = weddingOptional.get().getTasks().stream()
+            Wedding wedding = weddingOptional.get();
+            Double totalCost = wedding.getTasks().stream()
                     .mapToDouble(task -> task.getPlannedCost() == null ? 0.00 : task.getPlannedCost()).sum();
+            Double incurredCost = wedding.getTasks().stream().mapToDouble(task -> task.getCosts().stream().mapToDouble(cost -> cost.getPaymentAmount() == null ? 0.00 : cost.getPaymentAmount()).sum()).sum();
+
+            model.addAttribute("incurred_cost", incurredCost);
             model.addAttribute("total_cost", totalCost);
             model.addAttribute("wedding", weddingOptional.get());
             return "wedding-details";
