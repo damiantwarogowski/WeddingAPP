@@ -13,9 +13,6 @@
         <hr>
         <h2>Edit cost </h2>
         <form th:action="@{/cost/edit/submit}" method="post" th:object="${cost_edit}">
-            <!--        <form th:action="@{/cost/edit}" method="post">-->
-            <!--            <form th:action="@{/cost/edit/submit}" method="post" th:object="${cost_edit}">-->
-
             <input type="number" th:field="*{id}" hidden readonly>
             <input th:field="*{task}" hidden readonly>
             <div class="row col-12 form-container">
@@ -24,15 +21,16 @@
                         <label>Payment amount:</label>
                     </div>
                     <div class="col-md-6">
-
                         <input type="number" th:field="*{paymentAmount}"/>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <label>Date of payment:</label>
-                </div>
-                <div class="col-md-6">
-                    <input type="date" name="dateOfPayment" th:field="*{dateOfPayment}"/>
+                <div class="row col-md-12 form-input-row">
+                    <div class="col-md-6">
+                        <label>Date of payment:</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="date" name="dateOfPayment" th:field="*{dateOfPayment}"/>
+                    </div>
                 </div>
                 <div class="row col-md-12 form-input-row">
                     <div class="col-md-6">
@@ -43,7 +41,6 @@
                     </div>
                 </div>
             </div>
-
 
             <div class="row col-12 form-container">
                 <!--                    <a class="row col-md-4 form-input-row" th:href="@{'/tasks/' + ${cost.wedding.id}}">-->
