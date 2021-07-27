@@ -90,10 +90,24 @@ public class CostController {
         return "redirect:/tasks";
     }
 
-//    @GetMapping("/remove/{id}")
-//    public String removeCost(@PathVariable(name = "id") Long identificatory, Wedding wedding) {
-//        costService.removeCost(identificatory);
-//        return "redirect:/tasks/" + wedding.getId();
-//        //ID WEDDING CZY ID TASK?
-//    }
+    @GetMapping("/remove/{id}")
+    public String removeCost(@PathVariable(name = "id") Long identificatory) {
+        Long taskId = weddingService.removeCost(identificatory);
+        return "redirect:/tasks/" + taskId;
+    }
+
+//    ---
+//@GetMapping("/remove/{id}")
+//public String removeTask(@PathVariable(name = "id") Long identificatory) {
+//    Long weddingId = weddingService.removeTask(identificatory);
+//    return "redirect:/wedding/details/" + weddingId;
+//}
+//    ---
+//    !!!!!!!!!!! WZÓR  !!!!!!!1
+//@GetMapping("/remove/{id}")
+//public String removeWedding(@PathVariable(name = "id") Long identificatory) {
+//    weddingService.removeWedding(identificatory);
+//    return "redirect:/wedding/weddings";
+//}
+
 }

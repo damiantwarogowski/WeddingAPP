@@ -238,6 +238,17 @@ public class WeddingService {
         throw new UnsupportedOperationException("Task with provided identifier does not exist!");
     }
 
+    public Long removeCost(Long id) {
+        Optional<TaskCost> taskCostOptional = costRepository.findById(id);
+        if(taskCostOptional.isPresent()) {
+            TaskCost taskCost = taskCostOptional.get();
+            costRepository.deleteById(id);
+            return taskCost.getTask().getId();
+        }
+        throw new UnsupportedOperationException("Task with provided identifier does not exist!");
+
+    }
+
     public List<TaskCost> findAll() {
         return costRepository.findAll();
     }
