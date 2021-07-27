@@ -36,7 +36,8 @@ public class CostController {
 
     // aby móc wyświetlić formularz
     @GetMapping("/add/{taskId}")
-    public String addNewCost(Model model, @PathVariable Long taskId, Double bailCost, LocalDate bailCostDeadline, Double totalCost, LocalDate totalCostDeadline) {
+    public String addNewCost(Model model, @PathVariable Long taskId, Double paymentAmount, LocalDate dateOfPayment,
+                             LocalDate dateOfPaymentDeadline) {
 
 
         TaskCost taskCost = new TaskCost();
@@ -48,22 +49,23 @@ public class CostController {
         model.addAttribute("taskId", taskId);
         model.addAttribute("task", taskToDoOptional.get());
 //        model.addAttribute("all_types_of_costs", costService.findAll());
-        model.addAttribute("bailCost", bailCost);
-        model.addAttribute("bailCostDeadline", bailCostDeadline);
-        model.addAttribute("totalCost", totalCost);
-        model.addAttribute("totalCostDeadline", totalCostDeadline);
+        model.addAttribute("paymentAmount", paymentAmount);
+        model.addAttribute("dateOfPayment", dateOfPayment);
+//        model.addAttribute("totalCost", totalCost);
+        model.addAttribute("dateOfPaymentDeadline", dateOfPaymentDeadline);
 
         return "cost-of-task-add";
     }
 
     @PostMapping("/add")
-    public String addCost(TaskCost taskCost, Long taskId, Double bailCost, @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate bailCostDeadline, Double totalCost, @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate totalCostDeadline) {
+    public String addCost(TaskCost taskCost, Long taskId, Double paymentAmount, @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dateOfPayment,
+                         @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dateOfPaymentDeadline) {
         log.info("Cost to save:" + taskCost.getId());
 //        bailCostDeadline.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 //        totalCostDeadline.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
 
-        weddingService.addCostToTask(taskId, bailCost, bailCostDeadline, totalCost, totalCostDeadline);
+        weddingService.addCostToTask(taskId, paymentAmount, dateOfPayment, dateOfPaymentDeadline);
         return "redirect:/tasks/" + taskId;
     }
 

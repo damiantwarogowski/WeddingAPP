@@ -102,5 +102,4 @@ public class WeddingController {
         weddingService.editCouple(wedding_id, person_one_name, person_two_name);
         return "redirect:/wedding/details/" + wedding_id;
     }
-
 }

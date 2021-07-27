@@ -30,18 +30,23 @@
                 <div class="col-md-6" th:text="(*{deadlineDay} ?: '') + ' ' + (*{timeOfTask} ?: '')"></div>
             </div>
 
-            <div class="row col-md-12 form-input-row">
-                <div class="col-md-6">Reminder day:</div>
-                <div class="col-md-6" th:text="*{reminderDay}"></div>
-            </div>
+<!--            <div class="row col-md-12 form-input-row">-->
+<!--                <div class="col-md-6">Reminder day:</div>-->
+<!--                <div class="col-md-6" th:text="*{reminderDay}"></div>-->
+<!--            </div>-->
 
             <div class="row col-md-12 form-input-row">
                 <div class="col-md-6">Planned cost:</div>
                 <div class="col-md-6" th:text="*{plannedCost}"></div>
             </div>
 
+            <div class="row col-md-12 form-input-row">
+                <div class="col-md-6">Cost incurred:</div>
+<!--                <div class="col-md-6" th:text="*{costs.}"></div>-->
+            </div>
+
         </div>
-        <h2>Costs of task</h2>
+        <h2>Payments</h2>
         <div class="row col-12">
             <div class="col-md-10"></div>
             <a class="col-2" th:href="@{'/cost/add/' + ${task.id}}">
@@ -54,16 +59,15 @@
         <div class="row col-12 form-container">
             <div class="row col-md-12">
                 <div class="row col-md-12 list-header-row">
-                    <div class="col-2">Bail cost</div>
-                    <div class="col-2">Bail cost deadline</div>
-                    <div class="col-2">Total cost</div>
-                    <div class="col-2">Total cost deadline</div>
+                    <div class="col-2">Payment amount</div>
+                    <div class="col-2">Date of payment</div>
+                    <div class="col-3">Date of payment deadline</div>
+                    <div class="col-5"></div>
                 </div>
                 <div th:each="cost : ${task.getCosts()}" class="row col-md-12 list-data-row">
-                    <div class="col-2" th:text="${cost.bailCost}"></div>
-                    <div class="col-2" th:text="${cost.bailCostDeadline}"></div>
-                    <div class="col-2" th:text="${cost.totalCost}"></div>
-                    <div class="col-2" th:text="${cost.totalCostDeadline}"></div>
+                    <div class="col-2" th:text="${cost.paymentAmount}"></div>
+                    <div class="col-3" th:text="${cost.dateOfPayment}"></div>
+                    <div class="col-2" th:text="${cost.dateOfPaymentDeadline}"></div>
 
                     <div class="col-2">
                         <a class="col-6" th:href="@{'/cost/' + ${cost.id}}">
