@@ -66,19 +66,22 @@
         <div class="row col-12 form-container">
             <div class="row col-md-12">
                 <div class="row col-md-12 list-header-row">
-                    <div class="col-4">Type of task</div>
+                    <div class="col-3">Type of task</div>
 <!--                    <div class="col-2">Reminder day</div>-->
-                    <div class="col-2">Deadline day</div>
+                    <div class="col-1">Deadline</div>
 
                     <div class="col-2">Planned cost</div>
+                    <div class="col-2">Incurred cost</div>
 
                     <div class="col-2"></div>
                 </div>
                 <div th:each="task : ${wedding.getTasks()}" class="row col-md-12 list-data-row">
-                    <div class="col-4" th:text="${task.typeOfTask.name}"></div>
+                    <div class="col-3" th:text="${task.typeOfTask.name}"></div>
 <!--                    <div class="col-2" th:text="${task.reminderDay}"></div>-->
-                    <div class="col-2" th:text="${task.deadlineDay}"></div>
+                    <div class="col-1" th:text="${task.deadlineDay}"></div>
                     <div class="col-2" th:text="${task.plannedCost}"></div>
+                    <div class="col-2" th:text="${0}"></div>
+
 
                     <div class="col-2">
                         <a class="col-6" th:href="@{'/tasks/' + ${task.id}}">
