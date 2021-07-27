@@ -1,6 +1,7 @@
 package com.sda.weddingApp.controller;
 
 import com.sda.weddingApp.model.TaskToDo;
+import com.sda.weddingApp.model.Wedding;
 import com.sda.weddingApp.service.AccountService;
 import com.sda.weddingApp.service.TypeOfTaskService;
 import com.sda.weddingApp.service.WeddingService;
@@ -48,10 +49,23 @@ public class TaskController {
         return "redirect:/wedding/details/" + weddingId;
     }
 
+//    @GetMapping("/{idTask}")
+//    public String getAllTasks(Model model, @PathVariable Long idTask) {
+//        Optional<TaskToDo> taskOptional = typeOfTaskService.findTask(idTask);
+//        if (taskOptional.isPresent()) {
+//            model.addAttribute("task", taskOptional.get());
+//            return "task-details";
+//        }
+//        return "redirect:/wedding/weddings";
+//    }
+
     @GetMapping("/{idTask}")
     public String getAllTasks(Model model, @PathVariable Long idTask) {
         Optional<TaskToDo> taskOptional = typeOfTaskService.findTask(idTask);
         if (taskOptional.isPresent()) {
+            Double incurredCost = taskOptional.get().getCosts().stream()
+                    .mapToDouble(cost -> cost.getPaymentAmount() == null ? 0.00 : cost.getPaymentAmount()).sum();
+            model.addAttribute("incurred_cost",incurredCost);
             model.addAttribute("task", taskOptional.get());
             return "task-details";
         }
