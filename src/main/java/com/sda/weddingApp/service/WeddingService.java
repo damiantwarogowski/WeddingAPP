@@ -115,6 +115,7 @@ public class WeddingService {
             TaskToDo taskToDo = TaskToDo.builder()
                     .typeOfTask(taskType)
                     .deadlineDay(date)
+
                     .wedding(wedding)
                     .build();
 
@@ -167,6 +168,7 @@ public class WeddingService {
             TaskToDo taskToDo = TaskToDo.builder()
                     .typeOfTask(taskType)
                     .deadlineDay(task.getDeadlineDay())
+                    .plannedCost(plannedCost)
                     .wedding(wedding)
                     .build();
 
@@ -223,6 +225,18 @@ public class WeddingService {
             taskToDoRepository.save(taskToDo);
         }
         log.info("Task edited.");
+    }
+
+    public void editCost(TaskCost taskCostInfo) {
+        Optional<TaskCost> costEdit = costRepository.findById(taskCostInfo.getId());
+        if (costEdit.isPresent()) {
+            TaskCost taskCost = costEdit.get();
+            taskCost.setPaymentAmount(taskCostInfo.getPaymentAmount());
+            taskCost.setDateOfPayment(taskCostInfo.getDateOfPayment());
+            taskCost.setDateOfPaymentDeadline(taskCostInfo.getDateOfPaymentDeadline());
+            costRepository.save(taskCost);
+        }
+        log.info("Cost edited.");
     }
 
     //    public List<TaskToDo> getAll() {

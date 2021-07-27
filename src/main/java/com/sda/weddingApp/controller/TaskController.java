@@ -28,13 +28,13 @@ public class TaskController {
 
     // aby móc wyświetlić formularz
     @GetMapping("/add/{weddingId}")
-    public String addNewTask(Model model, @PathVariable Long weddingId) {
+    public String addNewTask(Model model, @PathVariable Long weddingId, Double plannedCost) {
         TaskToDo taskToDo = new TaskToDo();
 
         // dla użytkownika wysyłam obiekt studenta który ma być wypełniony w formularzu
         model.addAttribute("new_task", taskToDo);
         model.addAttribute("weddingId", weddingId);
-        model.addAttribute("plannedCost",taskToDo.getPlannedCost());
+        model.addAttribute("plannedCost",plannedCost);
         model.addAttribute("all_types_of_tasks", typeOfTaskService.findAll());
         return "wedding-task-add";
     }

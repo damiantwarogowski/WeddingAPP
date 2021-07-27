@@ -46,7 +46,7 @@
             </div>
 
         </div>
-        <h2>Paymentsd</h2>
+        <h2>Payments</h2>
         <div class="row col-12">
             <div class="col-md-10"></div>
             <a class="col-2" th:href="@{'/cost/add/' + ${task.id}}">
@@ -70,8 +70,8 @@
                     <div class="col-2" th:text="${cost.dateOfPaymentDeadline}"></div>
 
                     <div class="col-2">
-                        <a class="col-6" th:href="@{'/cost/' + ${cost.id}}">
-                            <button type="button" class="btn btn-outline-warning col-12">Details</button>
+                        <a class="col-6" th:href="@{'/cost/edit/' + ${cost.id}}">
+                            <button type="button" class="btn btn-outline-warning col-12">Edit</button>
                         </a>
 
                     </div>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit cost</title>
+    <th:block th:replace="fragments :: link-styles" th:remove="tag"/>
+</head>
+<body>
+<th:block th:replace="fragments :: navigator" th:remove="tag"/>
+
+<main>
+    <div class="container marketing">
+        <hr>
+        <h2>Edit cost </h2>
+        <form th:action="@{/cost/edit/submit}" method="post" th:object="${cost_edit}">
+            <!--        <form th:action="@{/cost/edit}" method="post">-->
+            <!--            <form th:action="@{/cost/edit/submit}" method="post" th:object="${cost_edit}">-->
+
+            <input type="number" th:field="*{id}" hidden readonly>
+            <div class="row col-12 form-container">
+
+                <div class="row col-md-12 form-input-row">
+                    <div class="row col-md-12 form-input-row">
+                        <div class="col-md-6">
+                            <label>Payment amount:</label>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="col-md-6">
+                                <input type="number" th:field="*{paymentAmount}"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <label>Date of payment:</label>
+                </div>
+                <div class="col-md-6">
+                    <input type="date" name="dateOfPayment" th:field="*{dateOfPayment}"/>
+                </div>
+                <div class="row col-md-12 form-input-row">
+                    <div class="col-md-6">
+                        <label>Date of payment deadline:</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="date" name="totalCostDeadline" th:field="*{dateOfPaymentDeadline}"/>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row col-12 form-container">
+                <!--                    <a class="row col-md-4 form-input-row" th:href="@{'/tasks/' + ${cost.wedding.id}}">-->
+                <!--                        <button type="button" class="btn btn-secondary col-12">Back to the task details</button>-->
+                <!--                    </a>-->
+                <div class="col-4"></div>
+                <div class="row col-md-4 form-input-row">
+                    <input class="btn btn-success col-12" type="submit" value="Edit the cost">
+                </div>
+            </div>
+            <!--            <div class="row col-12 form-container">-->
+            <!--                <input class="form-control btn btn-submit" type="submit">-->
+            <!--            </div>-->
+        </form>
+    </div>
+</main>
+<th:block th:replace="fragments :: scripts" th:remove="tag"/>
+</body>
+</html>

@@ -65,8 +65,8 @@
                     <div class="col-4">Type of task</div>
 <!--                    <div class="col-2">Reminder day</div>-->
                     <div class="col-2">Deadline day</div>
+
                     <div class="col-2">Planned cost</div>
-                    <div class="col-2">Cost incurred</div>
 
                     <div class="col-2"></div>
                 </div>
@@ -75,15 +75,14 @@
 <!--                    <div class="col-2" th:text="${task.reminderDay}"></div>-->
                     <div class="col-2" th:text="${task.deadlineDay}"></div>
                     <div class="col-2" th:text="${task.plannedCost}"></div>
-<!--                    <div class="col-2" th:text="${task.getCosts().}"></div>-->
 
-                    <div class="col-1">
+                    <div class="col-2">
                         <a class="col-6" th:href="@{'/tasks/' + ${task.id}}">
                             <button type="button" class="btn btn-outline-warning col-12">Details</button>
                         </a>
 
                     </div>
-                    <div class="col-1">
+                    <div class="col-2">
                         <a class="col-6" th:href="@{'/tasks/remove/' + ${task.id}}">
                             <button type="button" class="btn btn-outline-danger col-12">Remove</button>
                         </a>

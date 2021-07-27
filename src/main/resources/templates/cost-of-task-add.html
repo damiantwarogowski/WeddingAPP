@@ -11,11 +11,12 @@
 <main>
     <div class="container marketing">
         <hr>
-        <h2 >Add cost to  <span th:text="${task.typeOfTask.name}"/></h2>
+        <h2>Add cost to <span th:text="${task.typeOfTask.name}"/></h2>
 
         <form th:action="@{/cost/add}" method="post" th:object="${new_cost}">
             <input type="number" readonly hidden th:value="${taskId}" name="taskId">
             <div class="row col-12 form-container">
+
                 <div class="row col-md-12 form-input-row">
                 </div>
                 <div class="row col-md-12 form-input-row">
@@ -31,33 +32,34 @@
                         <label>Date of payment:</label>
                     </div>
                     <div class="col-md-6">
-                        <input type="date" name="dateOfPayment" th:min="${today}"  th:field="*{dateOfPayment}"/>
+                        <input type="date" name="dateOfPayment" th:min="${today}" th:field="*{dateOfPayment}"/>
                     </div>
                 </div>
-<!--                <div class="row col-md-12 form-input-row">-->
-<!--                    <div class="col-md-6">-->
-<!--                        <label>Total cost:</label>-->
-<!--                    </div>-->
-<!--                    <div class="col-md-6">-->
-<!--                        <input type="text" name="totalCost"/>-->
-<!--                    </div>-->
-<!--                </div>-->
+                <!--                <div class="row col-md-12 form-input-row">-->
+                <!--                    <div class="col-md-6">-->
+                <!--                        <label>Total cost:</label>-->
+                <!--                    </div>-->
+                <!--                    <div class="col-md-6">-->
+                <!--                        <input type="text" name="totalCost"/>-->
+                <!--                    </div>-->
+                <!--                </div>-->
                 <div class="row col-md-12 form-input-row">
                     <div class="col-md-6">
                         <label>Date of payment deadline:</label>
                     </div>
                     <div class="col-md-6">
-                        <input type="date" name="totalCostDeadline" th:min="${today}"  th:field="*{dateOfPaymentDeadline}"/>
+                        <input type="date" name="totalCostDeadline" th:min="${today}"
+                               th:field="*{dateOfPaymentDeadline}"/>
                     </div>
                 </div>
             </div>
             <div class="row col-12 form-container">
-                <a  class="row col-md-4 form-input-row" th:href="@{'/tasks/' + ${taskId}}">
+                <a class="row col-md-4 form-input-row" th:href="@{'/tasks/' + ${taskId}}">
                     <button type="button" class="btn btn-secondary col-12">Back to the task details</button>
                 </a>
                 <div class="col-4"></div>
                 <div class="row col-md-4 form-input-row">
-                    <input class="btn btn-success col-12" type="submit" value="Add a new cost" >
+                    <input class="btn btn-success col-12" type="submit" value="Add a new cost">
                 </div>
             </div>
             <!--            <div class="row col-12 form-container">-->

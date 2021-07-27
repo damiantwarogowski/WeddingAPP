@@ -79,8 +79,8 @@ public class CostController {
         return "redirect:/";
     }
 
-    @GetMapping("/edit/{idCostEdit}")
-    public String editCost(Model model, @PathVariable(name = "idCostEdit") Long id) {
+    @GetMapping("/edit/{costId}")
+    public String editCost(Model model, @PathVariable(name = "costId") Long id) {
         Optional<TaskCost> costToEdit = weddingService.findCostOfTask(id);
         if (costToEdit.isPresent()) {
             model.addAttribute("cost_edit", costToEdit.get());
@@ -90,24 +90,18 @@ public class CostController {
         return "redirect:/tasks";
     }
 
+    @PostMapping("/edit/submit")
+    public String editCost(TaskCost taskCost) {
+        weddingService.editCost(taskCost);
+        Long taskId = taskCost.getTask().getId();
+        return "redirect:/tasks/"+taskCost.getTask().getId();
+//        Źle idzie ścieżka
+//    +taskCost.getTask().getId()
+    }
+
     @GetMapping("/remove/{id}")
     public String removeCost(@PathVariable(name = "id") Long identificatory) {
         Long taskId = weddingService.removeCost(identificatory);
         return "redirect:/tasks/" + taskId;
     }
-
-//    ---
-//@GetMapping("/remove/{id}")
-//public String removeTask(@PathVariable(name = "id") Long identificatory) {
-//    Long weddingId = weddingService.removeTask(identificatory);
-//    return "redirect:/wedding/details/" + weddingId;
-//}
-//    ---
-//    !!!!!!!!!!! WZÓR  !!!!!!!1
-//@GetMapping("/remove/{id}")
-//public String removeWedding(@PathVariable(name = "id") Long identificatory) {
-//    weddingService.removeWedding(identificatory);
-//    return "redirect:/wedding/weddings";
-//}
-
 }
