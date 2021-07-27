@@ -20,34 +20,34 @@
                 </div>
                 <div class="row col-md-12 form-input-row">
                     <div class="col-md-6">
-                        <label>Bail cost:</label>
+                        <label>Payment amount:</label>
                     </div>
                     <div class="col-md-6">
-                        <input type="text" name="bailCost"/>
-                    </div>
-                </div>
-                <div class="row col-md-12 form-input-row">
-                    <div class="col-md-6">
-                        <label>Bail cost deadline:</label>
-                    </div>
-                    <div class="col-md-6">
-                        <input type="date" name="bailCostDeadline" th:min="${today}"  th:field="*{bailCostDeadline}"/>
+                        <input type="text" name="paymentAmount"/>
                     </div>
                 </div>
                 <div class="row col-md-12 form-input-row">
                     <div class="col-md-6">
-                        <label>Total cost:</label>
+                        <label>Date of payment:</label>
                     </div>
                     <div class="col-md-6">
-                        <input type="text" name="totalCost"/>
+                        <input type="date" name="dateOfPayment" th:min="${today}"  th:field="*{dateOfPayment}"/>
                     </div>
                 </div>
+<!--                <div class="row col-md-12 form-input-row">-->
+<!--                    <div class="col-md-6">-->
+<!--                        <label>Total cost:</label>-->
+<!--                    </div>-->
+<!--                    <div class="col-md-6">-->
+<!--                        <input type="text" name="totalCost"/>-->
+<!--                    </div>-->
+<!--                </div>-->
                 <div class="row col-md-12 form-input-row">
                     <div class="col-md-6">
-                        <label>Total cost deadline:</label>
+                        <label>Date of payment deadline:</label>
                     </div>
                     <div class="col-md-6">
-                        <input type="date" name="totalCostDeadline" th:min="${today}"  th:field="*{totalCostDeadline}"/>
+                        <input type="date" name="totalCostDeadline" th:min="${today}"  th:field="*{dateOfPaymentDeadline}"/>
                     </div>
                 </div>
             </div>
@@ -60,9 +60,9 @@
                     <input class="btn btn-success col-12" type="submit" value="Add a new cost" >
                 </div>
             </div>
-<!--            <div class="row col-12 form-container">-->
-<!--                <input class="form-control btn btn-submit" type="submit">-->
-<!--            </div>-->
+            <!--            <div class="row col-12 form-container">-->
+            <!--                <input class="form-control btn btn-submit" type="submit">-->
+            <!--            </div>-->
         </form>
     </div>
 </main>

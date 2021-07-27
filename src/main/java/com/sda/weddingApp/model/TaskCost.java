@@ -21,13 +21,13 @@ public class TaskCost {
 
     private Double totalCost;
 
-    private Double bailCost;
+    private Double paymentAmount;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate totalCostDeadline;
+    private LocalDate dateOfPayment;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate bailCostDeadline;
+    private LocalDate dateOfPaymentDeadline;
 
     @OneToMany(mappedBy = "taskCost", fetch = FetchType.EAGER)
     @ToString.Exclude

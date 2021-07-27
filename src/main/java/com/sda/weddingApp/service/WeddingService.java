@@ -246,17 +246,18 @@ public class WeddingService {
         return costRepository.findById(id);
     }
 
-    public void addCostToTask(Long taskId, Double bailCost, LocalDate bailCostDeadline, Double totalCost, LocalDate totalCostDeadline) {
+    public void addCostToTask(Long taskId, Double paymentAmount,
+                              LocalDate dateOfPayment , LocalDate dateOfPaymentDeadline) {
         Optional<TaskToDo> optionalTask = taskToDoRepository.findById(taskId);
         if (optionalTask.isPresent()) {
             TaskToDo task = optionalTask.get();
 
             TaskCost taskCost = TaskCost.builder()
                     .task(task)
-                    .bailCost(bailCost)
-                    .bailCostDeadline(bailCostDeadline)
-                    .totalCost(totalCost)
-                    .totalCostDeadline(totalCostDeadline)
+                    .paymentAmount(paymentAmount)
+//                    .totalCost(totalCost)
+                    .dateOfPayment(dateOfPayment)
+                    .dateOfPaymentDeadline(dateOfPaymentDeadline)
                     .build();
 
             costRepository.save(taskCost);
